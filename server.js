@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // TODO: add orderRow
 const admin = require('./routes/api/admin');
@@ -9,6 +10,10 @@ const orders = require('./routes/api/orders');
 const profile = require('./routes/api/profile');
 
 const app = express();
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Database config
 const db = require('./config/keys').mongoURI;
