@@ -3,11 +3,10 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
+const passport = require('passport');
 
 // Models
 const User = require('../../models/User');
-
-router.get('/test', (req, res) => res.json({ msg: 'users here' }));
 
 // POST | Register a new user
 router.post('/register', (req, res) => {
@@ -67,6 +66,12 @@ router.post('/login', (req, res) => {
       }
     });
   });
+});
+
+// GET | Get current user
+router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //req.user send the whole user
+  res.json(req.user);
 });
 
 module.exports = router;
