@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
-// TODO: add orderRow
 const admin = require('./routes/api/admin');
 const users = require('./routes/api/users');
 const products = require('./routes/api/products');
 const orders = require('./routes/api/orders');
+const orderProducts = require('./routes/api/orderProducts');
 const profile = require('./routes/api/profile');
 
 const app = express();
@@ -36,6 +36,7 @@ app.use('/api/admin', admin);
 app.use('/api/users', users);
 app.use('/api/products', products);
 app.use('/api/orders', orders);
+app.use('/api/orderProducts', orderProducts);
 app.use('/api/profile', profile);
 
 const port = process.env.PORT || 5000;
