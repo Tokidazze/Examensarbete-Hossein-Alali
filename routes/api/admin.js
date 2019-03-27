@@ -74,4 +74,23 @@ router.put(
   }
 );
 
+// DELETE || Delete user by id
+router.delete(
+  '/delete/user/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    if (req.user.role) {
+      User.findById(req.params.id)
+        .then(user => {
+          user
+            .remove()
+            .then(() => res.json({ msg: 'User is successfully deleted' }));
+        })
+        .catch(err => res.status(404).json({ msg: 'No user found' }));
+    } else {
+      return res.status(401).json('Not Authorized');
+    }
+  }
+);
+
 module.exports = router;
