@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
-router.get('/test', (req, res) => res.json({ msg: 'orders here' }));
+// Load models
+const User = require('../../models/User');
+const Order = require('../../models/Order');
+const Product = require('../../models/Product');
 
 module.exports = router;
