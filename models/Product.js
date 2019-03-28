@@ -21,7 +21,7 @@ const ProductSchema = new Schema({
     type: [String],
     required: true
   },
-  avalaible: {
+  available: {
     type: Boolean,
     default: true
   },

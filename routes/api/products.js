@@ -25,7 +25,7 @@ router.get('/product/:id', (req, res) => {
 
 // POST | Create new product
 router.post(
-  '/create/product',
+  '/create',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProductInput(req.body);
@@ -65,6 +65,41 @@ router.post(
         }
       }
     });
+  }
+);
+
+//PUT | Update/Edit product by id
+router.put(
+  '/update/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    if (req.user.role) {
+      const { errors, isValid } = validateProductInput(req.body);
+
+      if (!isValid) {
+        return res.status(400).json(errors);
+      }
+
+      // Get product id from url
+      const prodId = req.params.id;
+
+      // Create new object from req.body
+      const newProds = {};
+      newProds.title = req.body.title;
+      newProds.description = req.body.description;
+      newProds.image = req.body.image;
+      newProds.price = req.body.price;
+      newProds.category = req.body.category.split(',');
+      newProds.stock = req.body.stock;
+      newProds.available = req.body.available;
+
+      // Find product and update it
+      Product.findByIdAndUpdate(prodId, { $set: newProds }, { new: true })
+        .then(prod => res.json(prod))
+        .catch(err => res.json(err));
+    } else {
+      return res.status(401).json({ err: 'Not authorized' });
+    }
   }
 );
 
