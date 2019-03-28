@@ -68,7 +68,7 @@ router.post(
   }
 );
 
-//PUT | Update/Edit product by id
+// PUT | Update/Edit product by id
 router.put(
   '/update/:id',
   passport.authenticate('jwt', { session: false }),
@@ -99,6 +99,25 @@ router.put(
         .catch(err => res.json(err));
     } else {
       return res.status(401).json({ err: 'Not authorized' });
+    }
+  }
+);
+
+// DELETE | Delete product by id
+router.delete(
+  '/delete/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    if (req.user.role) {
+      Product.findById(req.params.id)
+        .then(product => {
+          product.remove().then(() => {
+            res.status(200).json({ msg: 'Product successfully deleted' });
+          });
+        })
+        .catch(() => res.status(404).json({ msg: 'No product found' }));
+    } else {
+      return res.status(401).json({ msg: 'Not authorized' });
     }
   }
 );
