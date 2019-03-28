@@ -10,6 +10,45 @@ const Product = require('../../models/Product');
 // Validation
 const validateOrderInput = require('../../validation/order');
 
+// GET | Get all orders
+router.get(
+  '/all',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    if (req.user.role) {
+      Order.find()
+        .sort({ date: -1 })
+        .then(orders => {
+          if (orders.length > 0) {
+            return res.status(200).json(orders);
+          } else {
+            return res.status(404).json({ error: 'Could not find any orders' });
+          }
+        })
+        .catch(err => res.status(400).json(err));
+    } else {
+      return res.status(404).json({ msg: 'Not authorized' });
+    }
+  }
+);
+
+// GET | Get order by id
+router.get(
+  '/order/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Order.findById(req.params.id)
+      .then(order => {
+        if (order.userId == req.user.id || req.user.role) {
+          return res.status(200).json(order);
+        } else {
+          return res.status(401).json({ msg: 'Not authorized' });
+        }
+      })
+      .catch(err => res.status(400).json(err));
+  }
+);
+
 // POST | Create new order
 router.post(
   '/create',
@@ -44,7 +83,7 @@ router.post(
     }
 
     const newOrder = new Order({
-      user: req.user.id,
+      userId: req.user.id,
       orderProducts: cart,
       totalSum: totalSum,
       customerFirstName: req.body.customerFirstName,
