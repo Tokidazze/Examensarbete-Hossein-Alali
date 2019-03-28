@@ -14,16 +14,16 @@ module.exports = function validateOrderInput(data) {
   data.zip = !isEmpty(data.zip) ? data.zip : '';
   data.city = !isEmpty(data.city) ? data.city : '';
 
-  if (!Validator.isLength(data.customerFirstName, { min: 3, max: 60 })) {
-    errors.customerFirstName = 'First name must be between 3 and 60 characters';
+  if (!Validator.isLength(data.customerFirstName, { min: 2, max: 60 })) {
+    errors.customerFirstName = 'First name must be between 2 and 60 characters';
   }
 
   if (Validator.isEmpty(data.customerFirstName)) {
     errors.customerFirstName = 'First name field is required';
   }
 
-  if (!Validator.isLength(data.customerLastName, { min: 3, max: 60 })) {
-    errors.customerLastName = 'Last name must be between 3 and 60 characters';
+  if (!Validator.isLength(data.customerLastName, { min: 2, max: 60 })) {
+    errors.customerLastName = 'Last name must be between 2 and 60 characters';
   }
 
   if (Validator.isEmpty(data.customerLastName)) {
