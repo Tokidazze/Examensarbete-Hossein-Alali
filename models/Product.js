@@ -18,7 +18,7 @@ const ProductSchema = new Schema({
     required: true
   },
   category: {
-    type: String,
+    type: [String],
     required: true
   },
   avalaible: {
