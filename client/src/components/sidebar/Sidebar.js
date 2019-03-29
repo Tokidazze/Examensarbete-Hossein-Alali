@@ -26,11 +26,21 @@ class Sidebar extends Component {
         >
           Home
         </a>
-        <a id='about' className='menu-item' href='/about'>
-          About
+        <a
+          onClick={() => this.closeMenu()}
+          id='login'
+          className='menu-item'
+          href='/login'
+        >
+          Login
         </a>
-        <a id='contact' className='menu-item' href='/contact'>
-          Contact
+        <a
+          onClick={() => this.closeMenu()}
+          id='register'
+          className='menu-item'
+          href='/register'
+        >
+          Register
         </a>
       </Menu>
     );
