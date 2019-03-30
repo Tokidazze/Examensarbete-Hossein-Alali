@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "jwt-decode": "^2.2.0",
     "node": "^10.1.0",
     "react": "^16.8.6",
     "react-burger-menu": "^2.6.5",

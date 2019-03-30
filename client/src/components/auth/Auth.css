@@ -1,7 +1,9 @@
-.register {
+.register,
+.login {
   margin-top: 2em;
 }
 
-.register-header {
+.register-header,
+.login-header {
   margin-bottom: 25px;
 }
