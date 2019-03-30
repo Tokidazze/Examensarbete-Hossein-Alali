@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Sidebar from '../sidebar/Sidebar';
 
@@ -9,9 +10,9 @@ class Navbar extends Component {
     return (
       <div>
         <nav className='navbar navbar-light bg-light'>
-          <a className='navbar-brand' href='#'>
+          <Link className='navbar-brand' to='/'>
             Chat&Buy
-          </a>
+          </Link>
           <Sidebar />
         </nav>
         <form className='form-inline my-2 my-lg-0 navbar-form'>

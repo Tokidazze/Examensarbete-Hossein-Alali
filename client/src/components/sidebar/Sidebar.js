@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
+import { Link } from 'react-router-dom';
 
 import './Sidebar.css';
 
@@ -18,30 +19,30 @@ class Sidebar extends Component {
   render() {
     return (
       <Menu right isOpen={this.state.menuOpen}>
-        <a
+        <Link
           onClick={() => this.closeMenu()}
           id='home'
           className='menu-item'
-          href='/'
+          to='/'
         >
           Home
-        </a>
-        <a
+        </Link>
+        <Link
           onClick={() => this.closeMenu()}
           id='login'
           className='menu-item'
-          href='/login'
+          to='/login'
         >
           Login
-        </a>
-        <a
+        </Link>
+        <Link
           onClick={() => this.closeMenu()}
           id='register'
           className='menu-item'
-          href='/register'
+          to='/register'
         >
           Register
-        </a>
+        </Link>
       </Menu>
     );
   }
