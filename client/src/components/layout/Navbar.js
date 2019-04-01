@@ -13,6 +13,7 @@ class Navbar extends Component {
           <Link className='navbar-brand' to='/'>
             Chat&Buy
           </Link>
+          {/* TODO: if case for diffrent navbar */}
           <Sidebar />
         </nav>
         <form className='form-inline my-2 my-lg-0 navbar-form'>
