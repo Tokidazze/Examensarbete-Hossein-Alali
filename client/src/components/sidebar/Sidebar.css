@@ -48,9 +48,9 @@
 }
 
 /* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
+/* .bm-morph-shape {
   fill: #373a47;
-}
+} */
 
 /* Wrapper for item list */
 .bm-item-list {
@@ -65,6 +65,10 @@
   padding-left: 30px;
 }
 
+.bm-item.container:focus {
+  outline: none;
+}
+
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
@@ -72,4 +76,9 @@
 
 li {
   list-style: none;
+}
+
+.menu-item:hover {
+  color: white;
+  text-decoration: none;
 }

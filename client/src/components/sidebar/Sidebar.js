@@ -27,9 +27,27 @@ class Sidebar extends Component {
     const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
-      <a href='#' onClick={this.onLogoutClick.bind(this)} className='nav-link'>
-        Logout
-      </a>
+      <ul className='container'>
+        <li>
+          <Link
+            onClick={() => this.closeMenu()}
+            id='userpage'
+            className='menu-item'
+            to='/user/profile'
+          >
+            My Profile
+          </Link>
+        </li>
+        <li>
+          <a
+            href='/login'
+            onClick={this.onLogoutClick.bind(this)}
+            className='menu-item'
+          >
+            Logout
+          </a>
+        </li>
+      </ul>
     );
 
     const guestLinks = (
@@ -68,6 +86,26 @@ class Sidebar extends Component {
               to='/'
             >
               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              onClick={() => this.closeMenu()}
+              id='products'
+              className='menu-item'
+              to='/products'
+            >
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link
+              onClick={() => this.closeMenu()}
+              id='category'
+              className='menu-item'
+              to='/products/category'
+            >
+              Category
             </Link>
           </li>
         </ul>
