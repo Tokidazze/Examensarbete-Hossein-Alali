@@ -29,8 +29,7 @@ router.post('/register', (req, res) => {
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
-        phoneNumber: req.body.phoneNumber
+        password: req.body.password
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -71,15 +70,25 @@ router.post('/login', (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         // User Match
-        const payload = { id: user.id, firstName: user.firstName, lastName: user.lastName }; // Create JWT payload
+        const payload = {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }; // Create JWT payload
 
         // Sign Token
-        jwt.sign(payload, keys.secretOrKey, { expiresIn: 86400 }, (err, token) => {
-          res.json({
-            success: true,
-            token: 'Bearer ' + token
-          });
-        });
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 86400 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token
+            });
+          }
+        );
       } else {
         errors.password = 'Password incorrect';
         return res.status(400).json(errors);
@@ -89,9 +98,18 @@ router.post('/login', (req, res) => {
 });
 
 // GET | Get current user
-router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
-  //req.user send the whole user
-  res.json(req.user);
-});
+router.get(
+  '/me',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    //req.user sends the whole user
+    res.json({
+      id: req.user.id,
+      role: req.user.role,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 
 module.exports = router;
