@@ -1,0 +1,15 @@
+export { default as Login } from './auth/Login';
+export { default as Register } from './auth/Register';
+export { default as AdminDashboard } from './admin/AdminDashboard';
+export { default as AdminOrder } from './admin/AdminOrder';
+export { default as AdminProduct } from './admin/AdminProduct';
+export { default as AdminUser } from './admin/AdminUser';
+export { default as OrderPage } from './order/OrderPage';
+export { default as Payment } from './payment/Payment';
+export { default as Category } from './product/Category';
+export { default as ProductPage } from './product/ProductPage';
+export { default as Products } from './product/Products';
+export { default as UserPage } from './user/UserPage';
+export { default as Footer } from './layout/Footer';
+export { default as Landing } from './layout/Landing';
+export { default as Navbar } from './layout/Navbar';
