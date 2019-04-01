@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Sidebar from '../sidebar/Sidebar';
+import logo from '../../img/logo.png';
 
 import './Layout.css';
 
@@ -11,7 +12,7 @@ class Navbar extends Component {
       <div>
         <nav className='navbar navbar-light bg-light'>
           <Link className='navbar-brand' to='/'>
-            Chat&Buy
+            <img id='logo' src={logo} alt='logo' />
           </Link>
           {/* TODO: if case for diffrent navbar */}
           <Sidebar />

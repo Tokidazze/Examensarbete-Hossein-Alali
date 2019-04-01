@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className=''>
       Copyright &copy; {new Date().getFullYear()} ChatShop
     </footer>
   );
-}
+};
+
+export default Footer;
