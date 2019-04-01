@@ -64,10 +64,6 @@ class Register extends Component {
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   type='text'
-                  // classnames will always show, is-invalid class will only show if errors.name is triggered
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.name
-                  })}
                   placeholder='Name'
                   name='name'
                   value={this.state.name}
@@ -76,9 +72,6 @@ class Register extends Component {
                 />
                 <TextFieldGroup
                   type='email'
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.email
-                  })}
                   placeholder='Email'
                   name='email'
                   value={this.state.email}
@@ -87,9 +80,6 @@ class Register extends Component {
                 />
                 <TextFieldGroup
                   type='password'
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.password
-                  })}
                   placeholder='Password'
                   name='password'
                   value={this.state.password}
@@ -98,9 +88,6 @@ class Register extends Component {
                 />
                 <TextFieldGroup
                   type='password'
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.password2
-                  })}
                   placeholder='Confirm Password'
                   name='password2'
                   value={this.state.password2}

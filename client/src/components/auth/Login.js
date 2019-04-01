@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -62,9 +61,6 @@ class Login extends Component {
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   type='email'
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.email
-                  })}
                   placeholder='Email'
                   name='email'
                   value={this.state.email}
@@ -74,9 +70,6 @@ class Login extends Component {
 
                 <TextFieldGroup
                   type='password'
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.password
-                  })}
                   placeholder='Password'
                   name='password'
                   value={this.state.password}
