@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
-import ProfileActions from './AdminActions';
+import AdminActions from './AdminActions';
 
 class AdminDashboard extends Component {
   componentDidMount() {
@@ -20,7 +20,7 @@ class AdminDashboard extends Component {
       dashboardContent = (
         <div className='container'>
           <p>Welcome admin {profile.name}!</p>
-          <ProfileActions />
+          <AdminActions />
         </div>
       );
     }

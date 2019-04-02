@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ProfileActions = () => {
+const AdminActions = () => {
   return (
     <div className='container'>
       <h4>Admin Actions</h4>
@@ -23,4 +23,4 @@ const ProfileActions = () => {
   );
 };
 
-export default ProfileActions;
+export default AdminActions;
