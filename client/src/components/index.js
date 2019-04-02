@@ -13,3 +13,5 @@ export { default as UserPage } from './user/UserPage';
 export { default as Footer } from './layout/Footer';
 export { default as Landing } from './layout/Landing';
 export { default as Navbar } from './layout/Navbar';
+export { default as PrivateRoute } from './common/PrivateRoute';
+export { default as Spinner } from './common/Spinner';

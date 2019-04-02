@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
@@ -24,7 +24,8 @@ import {
   Category,
   ProductPage,
   Products,
-  UserPage
+  UserPage,
+  PrivateRoute
 } from './components';
 
 import './App.css';
@@ -63,21 +64,43 @@ class App extends Component {
             <Navbar />
             <Route exact path='/' component={Landing} />
             <div className='container'>
-              {/* Admin Routes */}
-              <Route exact path='/admin/dashboard' component={AdminDashboard} />
-              <Route exact path='/admin/order' component={AdminOrder} />
-              <Route exact path='/admin/product' component={AdminProduct} />
-              <Route exact path='/admin/user' component={AdminUser} />
-              {/* Order Routes */}
-              <Route exact path='/checkout/order' component={OrderPage} />
-              {/* Payment Routes*/}
-              <Route exact path='/checkout/order/payment' component={Payment} />
+              <Switch>
+                {/* Admin Routes */}
+                <PrivateRoute
+                  exact
+                  path='/admin/dashboard'
+                  component={AdminDashboard}
+                />
+                <PrivateRoute
+                  exact
+                  path='/admin/order'
+                  component={AdminOrder}
+                />
+                <PrivateRoute
+                  exact
+                  path='/admin/product'
+                  component={AdminProduct}
+                />
+                <PrivateRoute exact path='/admin/user' component={AdminUser} />
+                {/* Order Routes */}
+                <PrivateRoute
+                  exact
+                  path='/checkout/order'
+                  component={OrderPage}
+                />
+                {/* Payment Routes*/}
+                <PrivateRoute
+                  exact
+                  path='/checkout/order/payment'
+                  component={Payment}
+                />
+                {/* User Routes */}
+                <PrivateRoute exact path='/user/profile' component={UserPage} />
+              </Switch>
               {/* Product Routes */}
               <Route exact path='/products' component={Products} />
               <Route exact path='/products/category' component={Category} />
               <Route exact path='/products/:id' component={ProductPage} />
-              {/* User Routes */}
-              <Route exact path='/user/profile' component={UserPage} />
               {/* Auth Routes */}
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />

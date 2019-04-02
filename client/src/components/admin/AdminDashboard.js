@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
+import Spinner from '../common/Spinner';
 
 class AdminDashboard extends Component {
   componentDidMount() {
@@ -8,11 +9,37 @@ class AdminDashboard extends Component {
   }
 
   render() {
-    return <div>Admin dashboard</div>;
+    const { profile, loading } = this.props.profile;
+
+    let dashboardContent;
+
+    if (profile === null || loading) {
+      dashboardContent = <Spinner />;
+    } else {
+      dashboardContent = (
+        <div className='container'>
+          <p>Welcome admin {profile.name}!</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className='userPage'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-12'>{dashboardContent}</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { getCurrentProfile }
 )(AdminDashboard);
