@@ -26,7 +26,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { user, isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <ul className='container'>
@@ -77,6 +77,51 @@ class Sidebar extends Component {
       </ul>
     );
 
+    const adminLinks = (
+      <ul className='container'>
+        <li>
+          <Link
+            onClick={() => this.closeMenu()}
+            id='admin-dashboard'
+            className='menu-item'
+            to='/admin/dashboard'
+          >
+            Admin Dashboard
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => this.closeMenu()}
+            id='admin-product'
+            className='menu-item'
+            to='/admin/product'
+          >
+            Admin Products
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => this.closeMenu()}
+            id='admin-user'
+            className='menu-item'
+            to='/admin/user'
+          >
+            Admin Users
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => this.closeMenu()}
+            id='admin-order'
+            className='menu-item'
+            to='/admin/order'
+          >
+            Admin Orders
+          </Link>
+        </li>
+      </ul>
+    );
+
     return (
       <Menu right isOpen={this.state.menuOpen}>
         <ul className='container'>
@@ -90,6 +135,7 @@ class Sidebar extends Component {
               Home
             </Link>
           </li>
+
           <li>
             <Link
               onClick={() => this.closeMenu()}
@@ -111,6 +157,7 @@ class Sidebar extends Component {
             </Link>
           </li>
         </ul>
+        {user.role ? adminLinks : null}
         {isAuthenticated ? authLinks : guestLinks}
       </Menu>
     );
