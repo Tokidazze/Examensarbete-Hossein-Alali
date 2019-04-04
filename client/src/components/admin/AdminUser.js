@@ -6,21 +6,48 @@ import { getAllUsers, deleteUser } from '../../actions/adminActions';
 import './Admin.css';
 
 class AdminUser extends Component {
+  constructor() {
+    super();
+    this.state = {
+      allUsers: [],
+      errors: {}
+    };
+  }
+
   componentDidMount() {
     this.props.getAllUsers();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      allUsers: nextProps.admin.getUsers
+    });
   }
 
   onClickDelete(id) {
     this.props.deleteUser(id, this.props.history);
   }
 
+  onClickEdit(id, user) {
+    this.props.history.push({
+      pathname: `/admin/users/${id}`,
+      state: {
+        key: user
+      }
+    });
+  }
+
   render() {
-    const users = this.props.admin.getUsers.map(user => (
+    const users = this.state.allUsers.map(user => (
       <tr key={user._id}>
         <th scope='row'>{user.name}</th>
         <td>{user.email}</td>
         <td>
-          <button type='button' className='btn btn-info'>
+          <button
+            onClick={this.onClickEdit.bind(this, user._id, user)}
+            type='button'
+            className='btn btn-info'
+          >
             Edit
           </button>
           <button

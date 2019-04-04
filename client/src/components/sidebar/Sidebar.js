@@ -94,7 +94,7 @@ class Sidebar extends Component {
             onClick={() => this.closeMenu()}
             id='admin-product'
             className='menu-item'
-            to='/admin/product'
+            to='/admin/products'
           >
             Admin Products
           </Link>
@@ -104,7 +104,7 @@ class Sidebar extends Component {
             onClick={() => this.closeMenu()}
             id='admin-user'
             className='menu-item'
-            to='/admin/user'
+            to='/admin/users'
           >
             Admin Users
           </Link>
@@ -114,7 +114,7 @@ class Sidebar extends Component {
             onClick={() => this.closeMenu()}
             id='admin-order'
             className='menu-item'
-            to='/admin/order'
+            to='/admin/orders'
           >
             Admin Orders
           </Link>

@@ -19,9 +19,23 @@ export const getAllUsers = () => dispatch => {
     );
 };
 
+// Update user
+export const updateUser = (updatedUser, history) => dispatch => {
+  axios
+    .put(`/api/admin/edit/user/${updatedUser.id}`, updatedUser)
+    .then(res => history.push('/admin/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete user
 export const deleteUser = (id, history) => dispatch => {
   axios
-    .delete(`/api/admin/delete/${id}`)
+    .delete(`/api/admin/delete/user/${id}`)
     .then(res => history.push('/admin/dashboard'))
     .catch(err =>
       dispatch({

@@ -14,6 +14,7 @@ import {
   AdminOrder,
   AdminProduct,
   AdminUser,
+  AdminEditUser,
   Login,
   Register,
   Navbar,
@@ -73,15 +74,20 @@ class App extends Component {
                 />
                 <PrivateRoute
                   exact
-                  path='/admin/order'
+                  path='/admin/orders'
                   component={AdminOrder}
                 />
                 <PrivateRoute
                   exact
-                  path='/admin/product'
+                  path='/admin/products'
                   component={AdminProduct}
                 />
-                <PrivateRoute exact path='/admin/user' component={AdminUser} />
+                <PrivateRoute exact path='/admin/users' component={AdminUser} />
+                <PrivateRoute
+                  exact
+                  path='/admin/users/:id'
+                  component={AdminEditUser}
+                />
                 {/* Order Routes */}
                 <PrivateRoute
                   exact

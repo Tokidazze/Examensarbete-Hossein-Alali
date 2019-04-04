@@ -4,6 +4,7 @@ export { default as AdminDashboard } from './admin/AdminDashboard';
 export { default as AdminOrder } from './admin/AdminOrder';
 export { default as AdminProduct } from './admin/AdminProduct';
 export { default as AdminUser } from './admin/AdminUser';
+export { default as AdminEditUser } from './admin/AdminEditUser';
 export { default as OrderPage } from './order/OrderPage';
 export { default as Payment } from './payment/Payment';
 export { default as Category } from './product/Category';
