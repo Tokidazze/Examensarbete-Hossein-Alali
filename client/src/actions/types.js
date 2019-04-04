@@ -12,7 +12,7 @@ export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 // Admin
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_ORDERS = 'GET_ORDERS';
-export const GET_USERS = 'GET_USERS';
+export const GET_ALL_USERS = 'GET_ALL_USERS';
 
 // Other
 export const LOADING = 'LOADING';

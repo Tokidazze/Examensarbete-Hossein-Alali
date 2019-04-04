@@ -1,9 +1,60 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getAllUsers } from '../../actions/adminActions';
+
+import './Admin.css';
 
 class AdminUser extends Component {
+  componentDidMount() {
+    this.props.getAllUsers();
+  }
+
+  onClickDelete(id) {
+    console.log('hej');
+    // this.props.deleteExperience(id);
+  }
+
   render() {
-    return <div>Handle users here</div>;
+    const users = this.props.admin.getUsers.map(user => (
+      <tr key={user._id}>
+        <th scope='row'>{user.name}</th>
+        <td>{user.email}</td>
+        <td>
+          <button type='button' className='btn btn-info'>
+            Edit
+          </button>
+          <button
+            onClick={this.onClickDelete.bind(this, user._id)}
+            type='button'
+            className='btn btn-danger'
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    ));
+    return (
+      <div className='table-responsive'>
+        <table className='table table-hover'>
+          <thead>
+            <tr>
+              <th scope='col'>Username</th>
+              <th scope='col'>Email</th>
+              <th scope='col'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>{users}</tbody>
+        </table>
+      </div>
+    );
   }
 }
 
-export default AdminUser;
+const mapStateToProps = state => ({
+  admin: state.admin
+});
+
+export default connect(
+  mapStateToProps,
+  { getAllUsers }
+)(AdminUser);
