@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllUsers } from '../../actions/adminActions';
+import { withRouter } from 'react-router-dom';
+import { getAllUsers, deleteUser } from '../../actions/adminActions';
 
 import './Admin.css';
 
@@ -10,8 +11,7 @@ class AdminUser extends Component {
   }
 
   onClickDelete(id) {
-    console.log('hej');
-    // this.props.deleteExperience(id);
+    this.props.deleteUser(id, this.props.history);
   }
 
   render() {
@@ -56,5 +56,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllUsers }
-)(AdminUser);
+  { getAllUsers, deleteUser }
+)(withRouter(AdminUser));
