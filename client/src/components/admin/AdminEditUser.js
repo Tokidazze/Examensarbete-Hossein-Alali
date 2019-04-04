@@ -49,6 +49,7 @@ class AdminEditUser extends Component {
           <div className='row'>
             <div className='col-md-8 m-auto'>
               <form noValidate onSubmit={this.onSubmit}>
+                <h3 className='text-center'>Edit user</h3>
                 <TextFieldGroup
                   type='text'
                   placeholder='Name'
