@@ -10,7 +10,7 @@ export const PROFILE_NOT_FOUND = 'PROFILE_NOT_FOUND';
 export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 
 // Admin
-export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const GET_ORDERS = 'GET_ORDERS';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 

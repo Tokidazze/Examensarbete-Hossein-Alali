@@ -3,6 +3,7 @@ export { default as Register } from './auth/Register';
 export { default as AdminDashboard } from './admin/AdminDashboard';
 export { default as AdminOrder } from './admin/AdminOrder';
 export { default as AdminProduct } from './admin/AdminProduct';
+export { default as AdminEditProduct } from './admin/AdminEditProduct';
 export { default as AdminUser } from './admin/AdminUser';
 export { default as AdminEditUser } from './admin/AdminEditUser';
 export { default as OrderPage } from './order/OrderPage';
