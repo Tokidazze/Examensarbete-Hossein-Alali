@@ -41,25 +41,29 @@ class AdminProduct extends Component {
   render() {
     const products = this.state.allProducts.map(product => (
       <tr key={product._id}>
-        <th scope="row">{product.title}</th>
+        <th scope='row'>{product.title}</th>
         <td>{product.description}</td>
         <td>{product.image}</td>
         <td>{product.price}</td>
-        <td>{product.category}</td>
+        <td>
+          {product.category.slice(0, 6).map((category, index) => (
+            <div key={index}>{category}</div>
+          ))}
+        </td>
         <td>{product.stock}</td>
         <td>{product.date}</td>
         <td>
           <button
             onClick={this.onClickEdit.bind(this, product._id, product)}
-            type="button"
-            className="btn btn-info"
+            type='button'
+            className='btn btn-info'
           >
             Edit
           </button>
           <button
             onClick={this.onClickDelete.bind(this, product._id)}
-            type="button"
-            className="btn btn-danger"
+            type='button'
+            className='btn btn-danger'
           >
             Delete
           </button>
@@ -67,21 +71,24 @@ class AdminProduct extends Component {
       </tr>
     ));
     return (
-      <div className="container">
-        <Link className="btn btn-primary" to="/admin/products/create">
+      <div className='container'>
+        <Link to='/admin/dashboard' className='btn btn-secondary product-back'>
+          Back
+        </Link>
+        <Link className='btn btn-primary' to='/admin/products/create'>
           Add product
         </Link>
-        <div className="table-responsive">
-          <table className="table table-hover">
+        <div className='table-responsive'>
+          <table className='table table-hover'>
             <thead>
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-                <th scope="col">Price</th>
-                <th scope="col">Category</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Date</th>
+                <th scope='col'>Title</th>
+                <th scope='col'>Description</th>
+                <th scope='col'>Image</th>
+                <th scope='col'>Price</th>
+                <th scope='col'>Category</th>
+                <th scope='col'>Stock</th>
+                <th scope='col'>Date</th>
               </tr>
             </thead>
             <tbody>{products}</tbody>

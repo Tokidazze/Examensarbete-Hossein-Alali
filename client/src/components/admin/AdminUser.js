@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getAllUsers, deleteUser } from '../../actions/adminActions';
 
 import './Admin.css';
@@ -61,17 +62,22 @@ class AdminUser extends Component {
       </tr>
     ));
     return (
-      <div className='table-responsive'>
-        <table className='table table-hover'>
-          <thead>
-            <tr>
-              <th scope='col'>Username</th>
-              <th scope='col'>Email</th>
-              <th scope='col'>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{users}</tbody>
-        </table>
+      <div className='container'>
+        <Link to='/admin/dashboard' className='btn btn-secondary'>
+          Back
+        </Link>
+        <div className='table-responsive'>
+          <table className='table table-hover'>
+            <thead>
+              <tr>
+                <th scope='col'>Username</th>
+                <th scope='col'>Email</th>
+                <th scope='col'>Actions</th>
+              </tr>
+            </thead>
+            <tbody>{users}</tbody>
+          </table>
+        </div>
       </div>
     );
   }

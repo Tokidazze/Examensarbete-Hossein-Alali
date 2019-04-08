@@ -12,9 +12,9 @@ class AdminCreateProduct extends Component {
       title: '',
       description: '',
       image: '',
-      price: '',
+      price: null,
       category: [],
-      stock: '',
+      stock: null,
       errors: {}
     };
 
@@ -43,56 +43,56 @@ class AdminCreateProduct extends Component {
 
   render() {
     return (
-      <div className="create-product">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
+      <div className='create-product'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-8 m-auto'>
               <form noValidate onSubmit={this.onSubmit}>
-                <h3 className="text-center">Create product</h3>
+                <h3 className='text-center'>Create product</h3>
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Title"
-                  name="title"
+                  type='text'
+                  placeholder='Title'
+                  name='title'
                   value={this.state.title}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Description"
-                  name="description"
+                  type='text'
+                  placeholder='Description'
+                  name='description'
                   value={this.state.description}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Image"
-                  name="image"
+                  type='text'
+                  placeholder='Image'
+                  name='image'
                   value={this.state.image}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Price"
-                  name="price"
+                  type='text'
+                  placeholder='Price'
+                  name='price'
                   value={this.state.price}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Category"
-                  name="category"
+                  type='text'
+                  placeholder='Category'
+                  name='category'
                   value={this.state.category}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Stock"
-                  name="stock"
+                  type='text'
+                  placeholder='Stock'
+                  name='stock'
                   value={this.state.stock}
                   onChange={this.onChange}
                 />
 
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input type='submit' className='btn btn-info btn-block mt-4' />
               </form>
             </div>
           </div>

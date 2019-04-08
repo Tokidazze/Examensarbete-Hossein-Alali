@@ -8,14 +8,17 @@ const AdminActions = () => {
       <div className='btn-group mb-4'>
         <Link to='/admin/users' className='btn btn-light'>
           <i className='fas fa-users text-info mr-1' />
+          <br />
           Handle Users
         </Link>
         <Link to='/admin/products' className='btn btn-light'>
           <i className='fas fa-gamepad text-info mr-1' />
+          <br />
           Handle Products
         </Link>
         <Link to='/admin/orders' className='btn btn-light'>
           <i className='fas fa-mail-bulk text-info mr-1' />
+          <br />
           Handle Orders
         </Link>
       </div>

@@ -4,6 +4,11 @@
   margin-top: 2em;
 }
 
-.btn-info {
+.btn-info,
+.product-back {
   margin-right: 5px;
+}
+
+.product-title {
+  min-width: 130px;
 }
