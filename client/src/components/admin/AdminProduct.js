@@ -67,24 +67,26 @@ class AdminProduct extends Component {
       </tr>
     ));
     return (
-      <div className="table-responsive">
+      <div className="container">
         <Link className="btn btn-primary" to="/admin/products/create">
           Add product
         </Link>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Image</th>
-              <th scope="col">Price</th>
-              <th scope="col">Category</th>
-              <th scope="col">Stock</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>{products}</tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>{products}</tbody>
+          </table>
+        </div>
       </div>
     );
   }

@@ -19,7 +19,20 @@ export const getAllProducts = () => dispatch => {
     );
 };
 
-// Update user
+// Create product
+export const createProduct = (productData, history) => dispatch => {
+  axios
+    .post('/api/products/create', productData)
+    .then(res => history.push('/admin/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Update product
 export const updateProduct = (updatedProduct, history) => dispatch => {
   axios
     .put(`/api/products/update/${updatedProduct.id}`, updatedProduct)
