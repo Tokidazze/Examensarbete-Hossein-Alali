@@ -74,11 +74,11 @@ router.put(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     if (req.user.role) {
-      const { errors, isValid } = validateProductInput(req.body);
+      // const { errors, isValid } = validateProductInput(req.body);
 
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
+      // if (!isValid) {
+      //   return res.status(400).json(errors);
+      // }
 
       // Get product id from url
       const prodId = req.params.id;
