@@ -27,7 +27,6 @@ class Sidebar extends Component {
   }
 
   handleClickOutside = evt => {
-    // ..handling code goes here...
     this.closeMenu();
   };
 
