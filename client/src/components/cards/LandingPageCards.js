@@ -13,9 +13,13 @@ class LandingPageCards extends Component {
             <div className='card-body'>
               <h5 className='card-title'>{product.title}</h5>
               <p className='card-text'>{product.price}kr</p>
-              <div class='btn-group' role='group' aria-label='Basic example'>
+              <div
+                className='btn-group'
+                role='group'
+                aria-label='Basic example'
+              >
                 <button className='btn btn-secondary'>
-                  <i class='fas fa-cart-plus' />
+                  <i className='fas fa-cart-plus' />
                 </button>
                 <Link to='/' className='btn btn-primary'>
                   Buy

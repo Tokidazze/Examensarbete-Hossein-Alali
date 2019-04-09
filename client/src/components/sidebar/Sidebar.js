@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
+import onClickOutside from 'react-onclickoutside';
 
 import './Sidebar.css';
 
@@ -24,6 +25,11 @@ class Sidebar extends Component {
   closeMenu() {
     this.setState({ menuOpen: false });
   }
+
+  handleClickOutside = evt => {
+    // ..handling code goes here...
+    this.closeMenu();
+  };
 
   render() {
     const { user, isAuthenticated } = this.props.auth;
@@ -171,4 +177,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logoutUser, clearCurrentProfile }
-)(Sidebar);
+)(onClickOutside(Sidebar));
