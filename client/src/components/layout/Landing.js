@@ -32,7 +32,7 @@ class Landing extends Component {
             <div className='carousel-item active'>
               <Link to='/products/categories'>
                 <img
-                  src='https://images.unsplash.com/photo-1496857239036-1fb137683000?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneronen_1553244008.jpg'
                   className='d-block w-100'
                   alt='img-1'
                 />
@@ -41,7 +41,7 @@ class Landing extends Component {
             <div className='carousel-item'>
               <Link to='/products/categories'>
                 <img
-                  src='https://images.unsplash.com/photo-1465920431246-94bf7d9d4269?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneren_1554901906.jpg'
                   className='d-block w-100'
                   alt='img-2'
                 />
@@ -50,7 +50,7 @@ class Landing extends Component {
             <div className='carousel-item'>
               <Link to='/products/categories'>
                 <img
-                  src='https://images.unsplash.com/photo-1453955994444-36bcd2f979fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneren_1554900236.jpg'
                   className='d-block w-100'
                   alt='img-3'
                 />
