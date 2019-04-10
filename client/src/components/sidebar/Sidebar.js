@@ -151,16 +151,6 @@ class Sidebar extends Component {
               Products
             </Link>
           </li>
-          <li>
-            <Link
-              onClick={() => this.closeMenu()}
-              id='category'
-              className='menu-item'
-              to='/products/category'
-            >
-              Category
-            </Link>
-          </li>
         </ul>
         {user.role ? adminLinks : null}
         {isAuthenticated ? authLinks : guestLinks}

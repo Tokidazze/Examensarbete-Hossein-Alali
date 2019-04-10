@@ -9,7 +9,6 @@ export { default as AdminUser } from './admin/AdminUser';
 export { default as AdminEditUser } from './admin/AdminEditUser';
 export { default as OrderPage } from './order/OrderPage';
 export { default as Payment } from './payment/Payment';
-export { default as Category } from './product/Category';
 export { default as ProductPage } from './product/ProductPage';
 export { default as Products } from './product/Products';
 export { default as UserPage } from './user/UserPage';
