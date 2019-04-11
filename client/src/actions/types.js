@@ -11,6 +11,7 @@ export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 
 // Admin
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_PRODUCT = 'GET__PRODUCT';
 export const GET_ORDERS = 'GET_ORDERS';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';

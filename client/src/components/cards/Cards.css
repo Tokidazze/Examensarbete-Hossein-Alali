@@ -16,6 +16,7 @@
 .card-img-top {
   height: 100%;
   max-height: 240px;
+  cursor: pointer;
 }
 
 .card-text {
@@ -25,4 +26,12 @@
 
 div.btn-group {
   width: 100%;
+}
+
+.cards-topper {
+  display: flex;
+}
+
+.cards-topper > p {
+  margin-right: 1em;
 }

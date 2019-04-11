@@ -65,62 +65,56 @@ class App extends Component {
           <div className='App'>
             <Navbar />
             <Route exact path='/' component={Landing} />
-            <div className='container'>
-              <Switch>
-                {/* Admin Routes */}
-                <PrivateRoute
-                  exact
-                  path='/admin/dashboard'
-                  component={AdminDashboard}
-                />
-                <PrivateRoute
-                  exact
-                  path='/admin/orders'
-                  component={AdminOrder}
-                />
-                <PrivateRoute
-                  exact
-                  path='/admin/products'
-                  component={AdminProduct}
-                />
-                <PrivateRoute
-                  exact
-                  path='/admin/products/create'
-                  component={AdminCreateProduct}
-                />
-                <PrivateRoute
-                  exact
-                  path='/admin/products/:id'
-                  component={AdminEditProduct}
-                />
-                <PrivateRoute exact path='/admin/users' component={AdminUser} />
-                <PrivateRoute
-                  exact
-                  path='/admin/users/:id'
-                  component={AdminEditUser}
-                />
-                {/* Order Routes */}
-                <PrivateRoute
-                  exact
-                  path='/checkout/order'
-                  component={OrderPage}
-                />
-                {/* Payment Routes*/}
-                <PrivateRoute
-                  exact
-                  path='/checkout/order/payment'
-                  component={Payment}
-                />
-                {/* User Routes */}
-                <PrivateRoute exact path='/user/profile' component={UserPage} />
-              </Switch>
-              {/* Product Routes */}
-              <Route exact path='/products' component={Products} />
-              <Route exact path='/products/:id' component={ProductPage} />
-              {/* Auth Routes */}
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-            </div>
+            <Switch>
+              {/* Admin Routes */}
+              <PrivateRoute
+                exact
+                path='/admin/dashboard'
+                component={AdminDashboard}
+              />
+              <PrivateRoute exact path='/admin/orders' component={AdminOrder} />
+              <PrivateRoute
+                exact
+                path='/admin/products'
+                component={AdminProduct}
+              />
+              <PrivateRoute
+                exact
+                path='/admin/products/create'
+                component={AdminCreateProduct}
+              />
+              <PrivateRoute
+                exact
+                path='/admin/products/:id'
+                component={AdminEditProduct}
+              />
+              <PrivateRoute exact path='/admin/users' component={AdminUser} />
+              <PrivateRoute
+                exact
+                path='/admin/users/:id'
+                component={AdminEditUser}
+              />
+              {/* Order Routes */}
+              <PrivateRoute
+                exact
+                path='/checkout/order'
+                component={OrderPage}
+              />
+              {/* Payment Routes*/}
+              <PrivateRoute
+                exact
+                path='/checkout/order/payment'
+                component={Payment}
+              />
+              {/* User Routes */}
+              <PrivateRoute exact path='/user/profile' component={UserPage} />
+            </Switch>
+            {/* Product Routes */}
+            <Route exact path='/products' component={Products} />
+            <Route exact path='/products/:id' component={ProductPage} />
+            {/* Auth Routes */}
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
             <Footer />
           </div>
         </Router>

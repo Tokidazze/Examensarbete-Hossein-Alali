@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './Cards.css';
 
 class LandingPageCards extends Component {
+  onClickProduct(id, product) {
+    this.props.history.push({
+      pathname: `/products/${id}`
+    });
+  }
+
   render() {
     const products = this.props.products;
     return (
       <div className='container cards-container'>
-        {products.map((product, index) => (
+        {products.slice(-10).map((product, index) => (
           <div className='card game-card' key={index}>
-            <img src={product.image} className='card-img-top' alt='product' />
+            <img
+              src={product.image}
+              className='card-img-top'
+              alt='product'
+              onClick={this.onClickProduct.bind(this, product._id)}
+            />
             <div className='card-body'>
               {/* <h5 className='card-title'>{product.title}</h5> */}
               <p className='card-text'>{product.price} SEK</p>
@@ -22,9 +33,12 @@ class LandingPageCards extends Component {
                 <button className='btn btn-secondary'>
                   <i className='fas fa-cart-plus' />
                 </button>
-                <Link to='/' className='btn btn-primary'>
+                <button
+                  onClick={this.onClickProduct.bind(this, product._id)}
+                  className='btn btn-primary'
+                >
                   Buy
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -34,4 +48,4 @@ class LandingPageCards extends Component {
   }
 }
 
-export default LandingPageCards;
+export default withRouter(LandingPageCards);

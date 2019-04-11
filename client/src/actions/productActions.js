@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_PRODUCTS, GET_ERRORS } from './types';
+import { GET_ALL_PRODUCTS, GET_PRODUCT, GET_ERRORS } from './types';
 
 // Get all products
 export const getAllProducts = () => dispatch => {
@@ -8,6 +8,24 @@ export const getAllProducts = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_PRODUCTS,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Get single product
+export const getProductById = id => dispatch => {
+  axios
+    .get(`/api/products/product/${id}`)
+    .then(res => {
+      dispatch({
+        type: GET_PRODUCT,
         payload: res.data
       });
     })
