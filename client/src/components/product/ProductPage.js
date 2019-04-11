@@ -35,6 +35,18 @@ class ProductPage extends Component {
   }
 
   render() {
+    const inStock = (
+      <div className='product-stock'>
+        <i className='fas fa-check' /> In Stock
+      </div>
+    );
+
+    const outOfStock = (
+      <div className='product-stock'>
+        <i className='fas fa-times' /> In Stock
+      </div>
+    );
+
     return (
       <div className='product-page'>
         <div className='container'>
@@ -55,9 +67,7 @@ class ProductPage extends Component {
                   ))}
                 </ul>
               </div>
-              <div className='product-stock'>
-                <i className='fas fa-check' /> In Stock
-              </div>
+              {this.state.stock > 0 ? inStock : outOfStock}
             </div>
           </div>
         </div>
