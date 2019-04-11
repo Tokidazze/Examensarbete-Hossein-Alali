@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getProductById } from '../../actions/productActions';
 
+import './Product.css';
+
 class ProductPage extends Component {
   constructor(props) {
     super(props);
@@ -34,8 +36,35 @@ class ProductPage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>hej</h1>
+      <div className='product-page'>
+        <div className='container'>
+          <div className='product'>
+            <div className='product-img'>
+              <img src={this.state.image} alt='product' />
+            </div>
+            <div className='product-info'>
+              <h4 className='product-title'>{this.state.title}</h4>
+              <p className='product-price'> {this.state.price} SEK</p>
+              <div className='category-container'>
+                <ul className='category'>
+                  <p>Category:</p>
+                  {this.state.category.slice(0, 6).map((category, index) => (
+                    <li key={index} className='padded'>
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className='product-stock'>
+                <i className='fas fa-check' /> In Stock
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='container product-description'>
+          <p className='description-header'>Description:</p>
+          <p>{this.state.description}</p>
+        </div>
       </div>
     );
   }

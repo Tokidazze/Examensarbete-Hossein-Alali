@@ -40,18 +40,7 @@ class AdminProduct extends Component {
   render() {
     const products = this.state.allProducts.map(product => (
       <tr key={product._id}>
-        <th scope='row'>{product.title}</th>
-        <td>{product.description}</td>
-        <td>{product.image}</td>
-        <td>{product.price}</td>
-        <td>
-          {product.category.slice(0, 6).map((category, index) => (
-            <div key={index}>{category}</div>
-          ))}
-        </td>
-        <td>{product.stock}</td>
-        <td>{product.date}</td>
-        <td>
+        <th scope='row'>
           <button
             onClick={this.onClickEdit.bind(this, product._id, product)}
             type='button'
@@ -66,7 +55,18 @@ class AdminProduct extends Component {
           >
             Delete
           </button>
+        </th>
+        <td>{product.title}</td>
+        <td>{product.description}</td>
+        <td>{product.image}</td>
+        <td>{product.price}</td>
+        <td>
+          {product.category.slice(0, 6).map((category, index) => (
+            <div key={index}>{category}</div>
+          ))}
         </td>
+        <td>{product.stock}</td>
+        <td>{product.date}</td>
       </tr>
     ));
     return (
@@ -81,6 +81,7 @@ class AdminProduct extends Component {
           <table className='table table-hover'>
             <thead>
               <tr>
+                <th scope='col'>Actions</th>
                 <th scope='col'>Title</th>
                 <th scope='col'>Description</th>
                 <th scope='col'>Image</th>
