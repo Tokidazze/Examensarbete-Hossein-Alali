@@ -13,3 +13,7 @@
   text-align: left;
   left: 0;
 }
+
+.form-check {
+  padding-bottom: 0.5rem;
+}

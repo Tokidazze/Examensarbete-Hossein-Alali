@@ -11,12 +11,8 @@ class Filterbar extends Component {
     };
   }
 
-  closeMenu() {
-    this.setState({ menuOpen: false });
-  }
-
   handleClickOutside = evt => {
-    this.closeMenu();
+    this.setState({ showing: false });
   };
 
   render() {
@@ -25,157 +21,157 @@ class Filterbar extends Component {
     const content = (
       <div className='bar-content'>
         <p>Category:</p>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Action'
             id='Action'
           />
-          <label class='form-check-label' for='Action'>
+          <label className='form-check-label' htmlFor='Action'>
             Action
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Adventure'
             id='Adventure'
           />
-          <label class='form-check-label' for='Adventure'>
+          <label className='form-check-label' htmlFor='Adventure'>
             Adventure
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Fantasy'
             id='Fantasy'
           />
-          <label class='form-check-label' for='Fantasy'>
+          <label className='form-check-label' htmlFor='Fantasy'>
             Fantasy
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='FPS'
             id='FPS'
           />
-          <label class='form-check-label' for='FPS'>
+          <label className='form-check-label' htmlFor='FPS'>
             FPS
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Horror'
             id='Horror'
           />
-          <label class='form-check-label' for='Horror'>
+          <label className='form-check-label' htmlFor='Horror'>
             Horror
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Multiplayer'
             id='Multiplayer'
           />
-          <label class='form-check-label' for='Multiplayer'>
+          <label className='form-check-label' htmlFor='Multiplayer'>
             Multiplayer
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='OpenWorld'
             id='OpenWorld'
           />
-          <label class='form-check-label' for='OpenWorld'>
+          <label className='form-check-label' htmlFor='OpenWorld'>
             OpenWorld
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='RPG'
             id='RPG'
           />
-          <label class='form-check-label' for='RPG'>
+          <label className='form-check-label' htmlFor='RPG'>
             RPG
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Simulation'
             id='Simulation'
           />
-          <label class='form-check-label' for='Simulation'>
+          <label className='form-check-label' htmlFor='Simulation'>
             Simulation
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Singleplayer'
             id='Singleplayer'
           />
-          <label class='form-check-label' for='Singleplayer'>
+          <label className='form-check-label' htmlFor='Singleplayer'>
             Singleplayer
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Sports'
             id='Sports'
           />
-          <label class='form-check-label' for='Sports'>
+          <label className='form-check-label' htmlFor='Sports'>
             Sports
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Story'
             id='Story'
           />
-          <label class='form-check-label' for='Story'>
+          <label className='form-check-label' htmlFor='Story'>
             Story
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Strategy'
             id='Strategy'
           />
-          <label class='form-check-label' for='Strategy'>
+          <label className='form-check-label' htmlFor='Strategy'>
             Strategy
           </label>
         </div>
-        <div class='form-check'>
+        <div className='form-check'>
           <input
-            class='form-check-input'
+            className='form-check-input'
             type='checkbox'
             value='Survival'
             id='Survival'
           />
-          <label class='form-check-label' for='Survival'>
+          <label className='form-check-label' htmlFor='Survival'>
             Survival
           </label>
         </div>
