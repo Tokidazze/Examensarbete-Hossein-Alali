@@ -1,0 +1,26 @@
+.cart {
+  margin-right: 3.5rem;
+}
+
+.cart-content {
+  position: absolute;
+  background: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: auto;
+  width: 250px;
+  min-height: 150px;
+  padding: 15px;
+  text-align: left;
+  top: 30px;
+  right: 45px;
+}
+
+.fa-shopping-cart {
+  font-size: 1.3rem;
+}
+
+.checkout-btn {
+  display: flex;
+  justify-content: center;
+}

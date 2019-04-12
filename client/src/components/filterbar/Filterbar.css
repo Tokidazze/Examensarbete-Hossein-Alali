@@ -1,0 +1,15 @@
+.bar-content {
+  position: absolute;
+  width: 66%;
+  padding: 3% 3% 3% 0;
+  z-index: 9;
+  background: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: auto;
+  width: 250px;
+  min-height: 150px;
+  padding: 15px;
+  text-align: left;
+  left: 0;
+}

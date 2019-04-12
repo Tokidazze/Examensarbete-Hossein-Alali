@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import './Cards.css';
+import Filterbar from '../filterbar/Filterbar';
 
 class ProductsCards extends Component {
   onClickProduct(id) {
@@ -16,9 +17,7 @@ class ProductsCards extends Component {
       <div className='product-cards'>
         <div className='container cards-topper'>
           <p>Games: {products.length}</p>
-          <button className='btn btn-primary'>
-            <i className='fas fa-filter' />
-          </button>
+          <Filterbar />
         </div>
         <div className='container cards-container'>
           {products.map((product, index) => (

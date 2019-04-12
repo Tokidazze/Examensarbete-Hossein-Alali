@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { GET_ALL_PRODUCTS, GET_PRODUCT, GET_ERRORS } from './types';
+import { GET_ALL_PRODUCTS, GET_PRODUCT, GET_ERRORS, LOADING } from './types';
 
 // Get all products
 export const getAllProducts = () => dispatch => {
+  dispatch(setProductLoading());
   axios
     .get('/api/products/all')
     .then(res => {
@@ -21,6 +22,7 @@ export const getAllProducts = () => dispatch => {
 
 // Get single product
 export const getProductById = id => dispatch => {
+  dispatch(setProductLoading());
   axios
     .get(`/api/products/product/${id}`)
     .then(res => {
@@ -74,4 +76,11 @@ export const deleteProduct = (id, history) => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+// Loading
+export const setProductLoading = () => {
+  return {
+    type: LOADING
+  };
 };

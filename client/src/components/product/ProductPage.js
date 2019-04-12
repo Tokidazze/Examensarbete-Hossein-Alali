@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getProductById } from '../../actions/productActions';
+import Spinner from '../common/Spinner';
 
 import './Product.css';
 

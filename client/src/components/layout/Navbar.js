@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Sidebar from '../sidebar/Sidebar';
+import Cart from '../order/Cart';
 import logo from '../../img/logo.png';
 
 import './Layout.css';
@@ -15,7 +16,10 @@ class Navbar extends Component {
             <img id='logo' src={logo} alt='logo' />
           </Link>
           {/* TODO: if case for diffrent navbar */}
-          <Sidebar />
+          <div className='navbar-end'>
+            <Cart />
+            <Sidebar />
+          </div>
         </nav>
         <div className='container form-container'>
           <form className='form-inline my-2 my-lg-0 navbar-form'>
