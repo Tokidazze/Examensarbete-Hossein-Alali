@@ -68,6 +68,11 @@ class ProductPage extends Component {
                 </ul>
               </div>
               {this.state.stock > 0 ? inStock : outOfStock}
+              <div className='add-cart'>
+                <button className='btn btn-success'>
+                  <i className='fas fa-cart-plus' /> Add to cart
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -3,18 +3,22 @@
 }
 
 .product-img {
-  margin-right: 3rem;
+  margin-right: 1.5rem;
 }
 
 .product-img > img {
   width: 100%;
   height: 100%;
-  max-width: 250px;
-  max-height: 350px;
+  /* max-width: 250px;
+  max-height: 350px; */
 }
 
 .product-title {
   margin-bottom: 1rem;
+}
+
+.add-cart {
+  margin-top: 1rem;
 }
 
 .product-price {
