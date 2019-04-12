@@ -18,3 +18,16 @@ export const getAllOrders = () => dispatch => {
       })
     );
 };
+
+// Create order
+export const createOrder = (orderData, history) => dispatch => {
+  axios
+    .post('/api/orders/create', orderData)
+    .then(res => history.push('/user/profile'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
