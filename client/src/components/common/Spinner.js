@@ -1,6 +1,5 @@
 import React from 'react';
 import spinnerPacman from './pacman.gif';
-import spinnerWedge from './spinner.gif';
 
 export default () => {
   return (

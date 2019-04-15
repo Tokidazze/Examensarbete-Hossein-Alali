@@ -14,13 +14,36 @@
   text-align: left;
   top: 30px;
   right: 45px;
+  z-index: 100;
 }
 
 .fa-shopping-cart {
   font-size: 1.3rem;
 }
 
-.checkout-btn {
+.checkout-btn,
+.cart-items {
   display: flex;
   justify-content: center;
+}
+
+.cart-items {
+  margin-bottom: 1rem;
+}
+
+.item-img {
+  margin-right: 2rem;
+}
+
+.item-img > img {
+  height: 50px;
+}
+
+.item-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  font-size: 14px;
 }

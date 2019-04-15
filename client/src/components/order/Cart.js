@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './Order.css';
@@ -13,16 +14,44 @@ class Cart extends Component {
 
   render() {
     const { showing } = this.state;
+    console.log(this.props);
+
+    let addedItems = this.props.items.addedItems.length ? (
+      this.props.items.addedItems.map(item => {
+        return (
+          <li className='cart-items' key={item._id}>
+            <div className='item-img'>
+              <img src={item.image} alt={item.image} className='' />
+            </div>
+
+            <div className='item-desc'>
+              <span className='title'>
+                <b>{item.title}</b>
+              </span>
+              <span>Price: {item.price} SEK</span>
+              <span>Quantity: {item.quantity}</span>
+              <div className='add-remove'>
+                <button className='btn'>
+                  <i className='fas fa-plus' />
+                </button>
+                <button className='btn'>
+                  <i className='fas fa-minus' />
+                </button>
+              </div>
+              <button className='btn btn-danger'>Remove</button>
+            </div>
+          </li>
+        );
+      })
+    ) : (
+      <p>Nothing added.</p>
+    );
 
     const cartContent = (
       <div className='container cart-content'>
         <p>My added item(s)</p>
-
-        <div className='cart-order'>
-          <p>Titel: Game here</p>
-          <p>Price: 200</p>
-        </div>
-
+        {addedItems}
+        Total: {this.props.items.total}
         <Link
           onClick={() => this.setState({ showing: !showing })}
           to='/checkout/order'
@@ -44,4 +73,10 @@ class Cart extends Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = state => {
+  return {
+    items: state.product
+  };
+};
+
+export default connect(mapStateToProps)(Cart);

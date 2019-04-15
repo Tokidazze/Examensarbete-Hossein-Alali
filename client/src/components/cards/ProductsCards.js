@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { addToCart } from '../../actions/cartActions';
 
 import './Cards.css';
 import Filterbar from '../filterbar/Filterbar';
@@ -9,6 +11,11 @@ class ProductsCards extends Component {
     this.props.history.push({
       pathname: `/products/${id}`
     });
+  }
+
+  onCartClick(id) {
+    console.log(id);
+    this.props.addToCart(id);
   }
 
   render() {
@@ -36,7 +43,10 @@ class ProductsCards extends Component {
                   role='group'
                   aria-label='Basic example'
                 >
-                  <button className='btn btn-secondary'>
+                  <button
+                    onClick={this.onCartClick.bind(this, product._id)}
+                    className='btn btn-secondary'
+                  >
                     <i className='fas fa-cart-plus' />
                   </button>
                   <button
@@ -55,4 +65,15 @@ class ProductsCards extends Component {
   }
 }
 
-export default withRouter(ProductsCards);
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: id => {
+      dispatch(addToCart(id));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(ProductsCards));
