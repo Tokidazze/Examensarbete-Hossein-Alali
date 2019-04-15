@@ -4,6 +4,7 @@ import rootReducer from './reducers';
 
 function saveToLocalStorage(state) {
   try {
+    // TODO: Maybe save products only
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);
   } catch (e) {

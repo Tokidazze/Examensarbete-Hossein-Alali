@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {
+  removeItem,
+  addQuantity,
+  subtractQuantity
+} from '../../actions/cartActions';
 
 import './Order.css';
 
@@ -11,6 +16,18 @@ class Cart extends Component {
       showing: false
     };
   }
+
+  handleRemove = id => {
+    this.props.removeItem(id);
+  };
+  //to add the quantity
+  handleAddQuantity = id => {
+    this.props.addQuantity(id);
+  };
+  //to substruct from the quantity
+  handleSubtractQuantity = id => {
+    this.props.subtractQuantity(id);
+  };
 
   render() {
     const { showing } = this.state;
@@ -31,14 +48,31 @@ class Cart extends Component {
               <span>Price: {item.price} SEK</span>
               <span>Quantity: {item.quantity}</span>
               <div className='add-remove'>
-                <button className='btn'>
+                <button
+                  onClick={() => {
+                    this.handleAddQuantity(item._id);
+                  }}
+                  className='btn'
+                >
                   <i className='fas fa-plus' />
                 </button>
-                <button className='btn'>
+                <button
+                  onClick={() => {
+                    this.handleSubtractQuantity(item._id);
+                  }}
+                  className='btn'
+                >
                   <i className='fas fa-minus' />
                 </button>
               </div>
-              <button className='btn btn-danger'>Remove</button>
+              <button
+                onClick={() => {
+                  this.handleRemove(item._id);
+                }}
+                className='btn btn-danger'
+              >
+                Remove
+              </button>
             </div>
           </li>
         );
@@ -79,4 +113,21 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeItem: id => {
+      dispatch(removeItem(id));
+    },
+    addQuantity: id => {
+      dispatch(addQuantity(id));
+    },
+    subtractQuantity: id => {
+      dispatch(subtractQuantity(id));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);
