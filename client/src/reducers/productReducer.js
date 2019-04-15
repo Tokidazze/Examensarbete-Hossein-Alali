@@ -42,7 +42,6 @@ export default function(state = initialState, action) {
       let addedItem = state.products.find(
         product => product._id === action.payload
       );
-      console.log(addedItem);
 
       let existed_item = state.addedItems.find(
         product => action.payload === product._id
@@ -84,6 +83,43 @@ export default function(state = initialState, action) {
         addedItems: new_items,
         total: newTotal
       };
+
+    // Add to existing item
+    case ADD_ITEM_QUANTITY:
+      let toAddItem = state.addedItems.find(
+        product => product._id === action.payload
+      );
+      toAddItem.quantity += 1;
+      let newTotalFromAdding = state.total + toAddItem.price;
+      return {
+        ...state,
+        total: newTotalFromAdding
+      };
+
+    // Subtract from existing item
+    case SUBTRACT_ITEM_QUANTITY:
+      let toSubtractItem = state.addedItems.find(
+        product => product._id === action.payload
+      );
+      //if the quantity == 0 then it should be removed
+      if (toSubtractItem.quantity === 1) {
+        let new_items = state.addedItems.filter(
+          item => item._id !== action.payload
+        );
+        let newTotal = state.total - toSubtractItem.price;
+        return {
+          ...state,
+          addedItems: new_items,
+          total: newTotal
+        };
+      } else {
+        toSubtractItem.quantity -= 1;
+        let newTotal = state.total - toSubtractItem.price;
+        return {
+          ...state,
+          total: newTotal
+        };
+      }
 
     default:
       return state;
