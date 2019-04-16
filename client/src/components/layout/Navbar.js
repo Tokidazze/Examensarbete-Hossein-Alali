@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../sidebar/Sidebar';
 import Cart from '../order/Cart';
 import logo from '../../img/logo.png';
+import Search from '../search/Search';
 
 import './Layout.css';
 
@@ -23,15 +24,7 @@ class Navbar extends Component {
         </nav>
         <div className='container form-container'>
           <form className='form-inline my-2 my-lg-0 navbar-form'>
-            <input
-              className='form-control mr-sm-2'
-              type='search'
-              placeholder='Search'
-              aria-label='Search'
-            />
-            <button className='btn btn--success my-2 my-sm-0' type='submit'>
-              <i className='fas fa-search' />
-            </button>
+            <Search />
           </form>
         </div>
       </div>

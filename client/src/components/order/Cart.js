@@ -31,7 +31,6 @@ class Cart extends Component {
 
   render() {
     const { showing } = this.state;
-    console.log(this.props);
 
     let addedItems = this.props.items.addedItems.length ? (
       this.props.items.addedItems.map(item => {

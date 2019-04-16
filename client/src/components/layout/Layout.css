@@ -1,7 +1,7 @@
 .navbar-form {
   flex-flow: nowrap;
   margin: 0 auto;
-  max-width: 400px;
+  width: 80%;
 }
 
 .form-container {
@@ -33,4 +33,8 @@
   width: 100%;
   height: 60px;
   background: #f8f9fa;
+}
+
+.input-group > input {
+  border: 1px solid #17a2b8;
 }

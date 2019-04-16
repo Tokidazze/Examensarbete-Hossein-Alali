@@ -20,8 +20,10 @@ export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const ADD_ITEM_QUANTITY = 'ADD_ITEM_QUANTITY';
 export const SUBTRACT_ITEM_QUANTITY = 'SUBTRACT_ITEM_QUANTITY';
-
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+
+// Search
+export const SEARCH = 'SEARCH';
 
 // Other
 export const LOADING = 'LOADING';
