@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { addToCart } from '../../actions/cartActions';
 import { getProductById } from '../../actions/productActions';
 
 import './Product.css';
@@ -32,6 +33,10 @@ class ProductPage extends Component {
 
   componentDidMount() {
     this.props.getProductById(this.props.match.params.id);
+  }
+
+  onCartClick(id) {
+    this.props.addToCart(id);
   }
 
   render() {
@@ -69,7 +74,13 @@ class ProductPage extends Component {
               </div>
               {this.state.stock > 0 ? inStock : outOfStock}
               <div className='add-cart'>
-                <button className='btn btn-success'>
+                <button
+                  onClick={this.onCartClick.bind(
+                    this,
+                    this.props.match.params.id
+                  )}
+                  className='btn btn-success'
+                >
                   <i className='fas fa-cart-plus' /> Add to cart
                 </button>
               </div>
@@ -89,7 +100,18 @@ const mapStateToProps = state => ({
   product: state.product.product
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: id => {
+      dispatch(addToCart(id));
+    },
+    getProductById: id => {
+      dispatch(getProductById(id));
+    }
+  };
+};
+
 export default connect(
   mapStateToProps,
-  { getProductById }
+  mapDispatchToProps
 )(withRouter(ProductPage));

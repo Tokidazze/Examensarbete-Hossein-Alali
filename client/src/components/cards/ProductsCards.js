@@ -14,7 +14,6 @@ class ProductsCards extends Component {
   }
 
   onCartClick(id) {
-    console.log(id);
     this.props.addToCart(id);
   }
 
