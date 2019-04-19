@@ -2,24 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { searchProduct } from '../../actions/searchActions';
+import ShowResults from './ShowResults';
+import onClickOutside from 'react-onclickoutside';
+
+import './Search.css';
 
 class Search extends Component {
+  state = {
+    showing: false
+  };
+
+  handleClickOutside = evt => {
+    this.setState({ showing: false });
+  };
+
   render() {
+    const { showing } = this.state;
     const { searchProduct, value } = this.props;
+
     return (
-      <div className='input-group'>
+      <div className='search-container'>
         <input
           type='text'
           className='form-control'
           placeholder='Search'
+          onClick={() => this.setState({ showing: true })}
           onChange={e => searchProduct(e.target.value.toLowerCase())}
           value={value}
         />
-        <div className='input-group-append'>
-          <button className='btn btn-info' type='button'>
-            <i className='fa fa-search' />
-          </button>
-        </div>
+        <div className='results-parent'>{showing ? <ShowResults /> : null}</div>
       </div>
     );
   }
@@ -36,4 +47,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search);
+)(onClickOutside(Search));

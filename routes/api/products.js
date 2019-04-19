@@ -89,7 +89,7 @@ router.put(
       newProds.description = req.body.description;
       newProds.image = req.body.image;
       newProds.price = req.body.price;
-      newProds.category = req.body.category;
+      newProds.category = req.body.category.split(',');
       newProds.stock = req.body.stock;
       newProds.available = req.body.available;
 

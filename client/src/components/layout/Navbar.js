@@ -23,9 +23,7 @@ class Navbar extends Component {
           </div>
         </nav>
         <div className='container form-container'>
-          <form className='form-inline my-2 my-lg-0 navbar-form'>
-            <Search />
-          </form>
+          <Search />
         </div>
       </div>
     );

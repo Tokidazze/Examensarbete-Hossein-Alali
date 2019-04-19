@@ -1,11 +1,6 @@
-.navbar-form {
-  flex-flow: nowrap;
-  margin: 0 auto;
-  width: 80%;
-}
-
 .form-container {
   display: flex;
+  align-items: center;
   background-image: url('../../img/bg-img.png');
   width: 100%;
   height: 190px;
