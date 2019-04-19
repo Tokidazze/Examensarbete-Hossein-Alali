@@ -35,6 +35,12 @@ class ProductPage extends Component {
     this.props.getProductById(this.props.match.params.id);
   }
 
+  componentWillUpdate(prevProps) {
+    if (this.props.product._id !== prevProps.match.params.id) {
+      this.props.getProductById(prevProps.match.params.id);
+    }
+  }
+
   onCartClick(id) {
     this.props.addToCart(id);
   }

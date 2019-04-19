@@ -16,6 +16,10 @@ class Search extends Component {
     this.setState({ showing: false });
   };
 
+  onClickClose(e) {
+    this.setState({ showing: false });
+  }
+
   render() {
     const { showing } = this.state;
     const { searchProduct, value } = this.props;
@@ -30,7 +34,11 @@ class Search extends Component {
           onChange={e => searchProduct(e.target.value.toLowerCase())}
           value={value}
         />
-        <div className='results-parent'>{showing ? <ShowResults /> : null}</div>
+        <div className='results-parent'>
+          {showing ? (
+            <ShowResults onClick={this.onClickClose.bind(this)} />
+          ) : null}
+        </div>
       </div>
     );
   }
