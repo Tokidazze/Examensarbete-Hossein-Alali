@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import onClickOutside from 'react-onclickoutside';
+import CheckboxField from '../common/CheckboxField';
 
 import './Filterbar.css';
 
 class Filterbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      showing: false
+      showing: false,
+      categories: [],
+      selected: [],
+      checkedCategories: new Map()
     };
   }
 
@@ -15,166 +19,42 @@ class Filterbar extends Component {
     this.setState({ showing: false });
   };
 
+  onChangeCategory(e) {
+    const category = e.target.name;
+    const isChecked = e.target.checked;
+    this.setState(prevState => ({
+      checkedCategories: prevState.checkedCategories.set(category, isChecked)
+    }));
+    console.log(this.state.checkedCategories);
+  }
+
   render() {
     const { showing } = this.state;
+
+    this.props.products &&
+      this.props.products.map((product, index) =>
+        product.category.map((cat, index) => this.state.categories.push(cat))
+      );
+
+    const nonDuplicateCategories = Array.from(
+      new Set(this.state.categories)
+    ).sort();
 
     const content = (
       <div className='bar-content'>
         <p>Category:</p>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Action'
-            id='Action'
-          />
-          <label className='form-check-label' htmlFor='Action'>
-            Action
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Adventure'
-            id='Adventure'
-          />
-          <label className='form-check-label' htmlFor='Adventure'>
-            Adventure
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Fantasy'
-            id='Fantasy'
-          />
-          <label className='form-check-label' htmlFor='Fantasy'>
-            Fantasy
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='FPS'
-            id='FPS'
-          />
-          <label className='form-check-label' htmlFor='FPS'>
-            FPS
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Horror'
-            id='Horror'
-          />
-          <label className='form-check-label' htmlFor='Horror'>
-            Horror
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Multiplayer'
-            id='Multiplayer'
-          />
-          <label className='form-check-label' htmlFor='Multiplayer'>
-            Multiplayer
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='OpenWorld'
-            id='OpenWorld'
-          />
-          <label className='form-check-label' htmlFor='OpenWorld'>
-            OpenWorld
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='RPG'
-            id='RPG'
-          />
-          <label className='form-check-label' htmlFor='RPG'>
-            RPG
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Simulation'
-            id='Simulation'
-          />
-          <label className='form-check-label' htmlFor='Simulation'>
-            Simulation
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Singleplayer'
-            id='Singleplayer'
-          />
-          <label className='form-check-label' htmlFor='Singleplayer'>
-            Singleplayer
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Sports'
-            id='Sports'
-          />
-          <label className='form-check-label' htmlFor='Sports'>
-            Sports
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Story'
-            id='Story'
-          />
-          <label className='form-check-label' htmlFor='Story'>
-            Story
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Strategy'
-            id='Strategy'
-          />
-          <label className='form-check-label' htmlFor='Strategy'>
-            Strategy
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='checkbox'
-            value='Survival'
-            id='Survival'
-          />
-          <label className='form-check-label' htmlFor='Survival'>
-            Survival
-          </label>
-        </div>
+        {nonDuplicateCategories.map((sorted, index) => (
+          <div className='form-check' key={index}>
+            <CheckboxField
+              name={sorted}
+              checked={this.state.checkedCategories.get(sorted)}
+              onChange={this.onChangeCategory.bind(this)}
+            />
+            <label className='form-check-label' htmlFor={sorted}>
+              {sorted}
+            </label>
+          </div>
+        ))}
       </div>
     );
 

@@ -22,6 +22,10 @@
   background: white;
 }
 
+.results {
+  cursor: pointer;
+}
+
 .results:hover {
   background: #f8f9fa;
 }

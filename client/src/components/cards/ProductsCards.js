@@ -23,7 +23,7 @@ class ProductsCards extends Component {
       <div className='product-cards'>
         <div className='container cards-topper'>
           <p>Games: {products.length}</p>
-          <Filterbar />
+          <Filterbar products={products} />
         </div>
         <div className='container cards-container'>
           {products.map((product, index) => (
