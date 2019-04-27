@@ -7,6 +7,19 @@ import './Cards.css';
 import Filterbar from '../filterbar/Filterbar';
 
 class ProductsCards extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      filters: [],
+      filteredGames: []
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ products: this.props.products });
+  }
+
   onClickProduct(id) {
     this.props.history.push({
       pathname: `/products/${id}`
@@ -17,14 +30,70 @@ class ProductsCards extends Component {
     this.props.addToCart(id);
   }
 
+  filterGames(gamesList, gameCategories) {
+    let completeGameList = [];
+
+    let res = gamesList.map(game => {
+      if (this.arrContains(gameCategories, game.category)) {
+        completeGameList.push(game);
+      }
+    });
+    console.log(completeGameList);
+    return completeGameList;
+  }
+
+  arrContains(arr1, arr2) {
+    let contains = true;
+    arr1.map(arr1item => {
+      if (!arr2.includes(arr1item)) {
+        contains = false;
+      }
+    });
+    return contains;
+  }
+
+  handleCategoryChange(e) {
+    const name = e.target.name;
+    const checked = e.target.checked;
+
+    const prod = this.state.products;
+
+    const filters = this.state.filters;
+    let index;
+
+    // check if the check box is checked or unchecked
+    if (checked) {
+      // add the value of the checkbox to filters array
+      filters.push(name);
+    } else {
+      // or remove the value from the unchecked checkbox from the array
+      index = filters.indexOf(name);
+      filters.splice(index, 1);
+    }
+
+    // update the state with the new array of options
+    this.setState({ filters: filters });
+
+    const na = filters.join().split(',');
+
+    this.filterGames(prod, na);
+  }
+
   render() {
-    const products = this.props.products;
+    const { products } = this.state;
+    // const { filters } = this.state;
+    // console.log(filters);
+
     return (
       <div className='product-cards'>
         <div className='container cards-topper'>
           <p>Games: {products.length}</p>
-          <Filterbar products={products} />
+          <Filterbar
+            products={products}
+            onChange={this.handleCategoryChange.bind(this)}
+          />
         </div>
+
         <div className='container cards-container'>
           {products.map((product, index) => (
             <div className='card game-card' key={index}>

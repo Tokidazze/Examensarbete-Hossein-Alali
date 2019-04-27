@@ -10,7 +10,6 @@ class Filterbar extends Component {
     this.state = {
       showing: false,
       categories: [],
-      selected: [],
       checkedCategories: new Map()
     };
   }
@@ -25,7 +24,8 @@ class Filterbar extends Component {
     this.setState(prevState => ({
       checkedCategories: prevState.checkedCategories.set(category, isChecked)
     }));
-    console.log(this.state.checkedCategories);
+
+    this.props.onChange(e);
   }
 
   render() {
@@ -47,6 +47,7 @@ class Filterbar extends Component {
           <div className='form-check' key={index}>
             <CheckboxField
               name={sorted}
+              value={sorted}
               checked={this.state.checkedCategories.get(sorted)}
               onChange={this.onChangeCategory.bind(this)}
             />
