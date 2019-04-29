@@ -16,6 +16,8 @@ class ProductsCards extends Component {
     };
   }
 
+  // TODO: refactor and rewrite if time allows
+
   componentDidMount() {
     this.setState({ products: this.props.products });
   }
@@ -30,19 +32,21 @@ class ProductsCards extends Component {
     this.props.addToCart(id);
   }
 
-  filterGames(gamesList, gameCategories) {
+  filterGamesByCategory(gamesList, gameCategories) {
     let completeGameList = [];
 
     let res = gamesList.map(game => {
-      if (this.arrContains(gameCategories, game.category)) {
+      if (this.arrContainsCategory(gameCategories, game.category)) {
         completeGameList.push(game);
       }
     });
-    console.log(completeGameList);
-    return completeGameList;
+
+    return this.setState({
+      filteredGames: completeGameList
+    });
   }
 
-  arrContains(arr1, arr2) {
+  arrContainsCategory(arr1, arr2) {
     let contains = true;
     arr1.map(arr1item => {
       if (!arr2.includes(arr1item)) {
@@ -71,18 +75,84 @@ class ProductsCards extends Component {
       filters.splice(index, 1);
     }
 
-    // update the state with the new array of options
-    this.setState({ filters: filters });
-
-    const na = filters.join().split(',');
-
-    this.filterGames(prod, na);
+    this.filterGamesByCategory(prod, filters);
   }
 
   render() {
     const { products } = this.state;
-    // const { filters } = this.state;
-    // console.log(filters);
+    const { filteredGames } = this.state;
+
+    const filteredGamesCard = (
+      <div className='container cards-container'>
+        {filteredGames.map((product, index) => (
+          <div className='card game-card' key={index}>
+            <img
+              src={product.image}
+              className='card-img-top'
+              alt='product'
+              onClick={this.onClickProduct.bind(this, product._id)}
+            />
+            <div className='card-body'>
+              <p className='card-text'>{product.price} SEK</p>
+              <div
+                className='btn-group'
+                role='group'
+                aria-label='Basic example'
+              >
+                <button
+                  onClick={this.onCartClick.bind(this, product._id)}
+                  className='btn btn-secondary'
+                >
+                  <i className='fas fa-cart-plus' />
+                </button>
+                <button
+                  onClick={this.onClickProduct.bind(this, product._id)}
+                  className='btn btn-primary'
+                >
+                  Buy
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+
+    const allProducts = (
+      <div className='container cards-container'>
+        {products.map((product, index) => (
+          <div className='card game-card' key={index}>
+            <img
+              src={product.image}
+              className='card-img-top'
+              alt='product'
+              onClick={this.onClickProduct.bind(this, product._id)}
+            />
+            <div className='card-body'>
+              <p className='card-text'>{product.price} SEK</p>
+              <div
+                className='btn-group'
+                role='group'
+                aria-label='Basic example'
+              >
+                <button
+                  onClick={this.onCartClick.bind(this, product._id)}
+                  className='btn btn-secondary'
+                >
+                  <i className='fas fa-cart-plus' />
+                </button>
+                <button
+                  onClick={this.onClickProduct.bind(this, product._id)}
+                  className='btn btn-primary'
+                >
+                  Buy
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
 
     return (
       <div className='product-cards'>
@@ -93,41 +163,9 @@ class ProductsCards extends Component {
             onChange={this.handleCategoryChange.bind(this)}
           />
         </div>
-
-        <div className='container cards-container'>
-          {products.map((product, index) => (
-            <div className='card game-card' key={index}>
-              <img
-                src={product.image}
-                className='card-img-top'
-                alt='product'
-                onClick={this.onClickProduct.bind(this, product._id)}
-              />
-              <div className='card-body'>
-                {/* <h5 className='card-title'>{product.title}</h5> */}
-                <p className='card-text'>{product.price} SEK</p>
-                <div
-                  className='btn-group'
-                  role='group'
-                  aria-label='Basic example'
-                >
-                  <button
-                    onClick={this.onCartClick.bind(this, product._id)}
-                    className='btn btn-secondary'
-                  >
-                    <i className='fas fa-cart-plus' />
-                  </button>
-                  <button
-                    onClick={this.onClickProduct.bind(this, product._id)}
-                    className='btn btn-primary'
-                  >
-                    Buy
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {filteredGamesCard.props.children.length > 0
+          ? filteredGamesCard
+          : allProducts}
       </div>
     );
   }
