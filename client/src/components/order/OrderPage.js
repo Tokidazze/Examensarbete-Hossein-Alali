@@ -26,8 +26,19 @@ class OrderPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.setState({
+        errors: nextProps.errors,
+        totalSum: nextProps.products.total,
+        orderProducts: nextProps.products.addedItems
+      });
     }
+  }
+
+  componentWillMount() {
+    this.setState({
+      totalSum: this.props.products.total,
+      orderProducts: this.props.products.addedItems
+    });
   }
 
   onChange(e) {
@@ -43,6 +54,7 @@ class OrderPage extends Component {
       address: this.state.address,
       zip: this.state.zip,
       city: this.state.city,
+      orderProducts: this.state.orderProducts,
       totalSum: this.state.totalSum
     };
 
@@ -61,8 +73,20 @@ class OrderPage extends Component {
                 My order
               </h1>
               <div>
-                <p>{this.state.totalSum}</p>
-                <p>{this.state.orderProducts}</p>
+                <div>
+                  {this.state.orderProducts.map((item, index) => (
+                    <div className='container checkout-items' key={index}>
+                      <p>
+                        <b>Title: {item.title}</b> x{item.quantity}
+                      </p>
+                      <p>
+                        <b>Price: </b>
+                        {item.price} SEK
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p>Total: {this.state.totalSum} SEK</p>
               </div>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -118,7 +142,8 @@ class OrderPage extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  products: state.product
 });
 
 export default connect(
