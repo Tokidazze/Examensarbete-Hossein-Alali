@@ -36,6 +36,10 @@ const OrderSchema = new Schema({
   },
   orderProducts: [
     {
+      productId: {
+        type: String,
+        required: true
+      },
       productTitle: {
         type: String,
         required: true

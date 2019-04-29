@@ -59,31 +59,19 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    // Get product_id and quantity from orderProducts
-    // TODO: remove hardcoded values and replace with real
-    const cart = [
-      {
-        productTitle: 'Sekiro',
-        quantity: 1,
-        price: 550
-      },
-      {
-        productTitle: 'Nier Automata',
-        quantity: 2,
-        price: 250
-      }
-    ];
-
-    let totalSum = 0;
-
-    for (let i = 0; i < cart.length; i++) {
-      totalSum += cart[i].quantity * cart[i].price;
-    }
+    const allProducts = req.body.orderProducts.map(item => {
+      return {
+        productId: item._id,
+        productTitle: item.title,
+        quantity: item.quantity,
+        price: item.price
+      };
+    });
 
     const newOrder = new Order({
       userId: req.user.id,
-      orderProducts: cart,
-      totalSum: totalSum,
+      orderProducts: allProducts,
+      totalSum: req.body.totalSum,
       customerFirstName: req.body.customerFirstName,
       customerLastName: req.body.customerLastName,
       address: req.body.address,
