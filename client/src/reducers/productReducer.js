@@ -5,6 +5,7 @@ import {
   ADD_ITEM_QUANTITY,
   SUBTRACT_ITEM_QUANTITY,
   REMOVE_FROM_CART,
+  CLEAR_CART,
   LOADING
 } from '../actions/types';
 
@@ -34,6 +35,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         product: action.payload,
+        loading: false
+      };
+
+    // Clear cart and reset total
+    case CLEAR_CART:
+      return {
+        ...state,
+        addedItems: action.payload,
+        total: 0,
         loading: false
       };
 

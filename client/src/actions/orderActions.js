@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_ORDERS, GET_ERRORS } from './types';
+import { GET_ALL_ORDERS, GET_ERRORS, CLEAR_CART } from './types';
 
 // Get all orders
 export const getAllOrders = () => dispatch => {
@@ -23,6 +23,12 @@ export const getAllOrders = () => dispatch => {
 export const createOrder = (orderData, history) => dispatch => {
   axios
     .post('/api/orders/create', orderData)
+    .then(res => {
+      dispatch({
+        type: CLEAR_CART,
+        payload: []
+      });
+    })
     .then(res => history.push('/user/profile'))
     .catch(err =>
       dispatch({
