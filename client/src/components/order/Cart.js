@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeItem, addQuantity, subtractQuantity } from '../../actions/cartActions';
+import onClickOutside from 'react-onclickoutside';
 
 import './Order.css';
 
@@ -23,6 +24,10 @@ class Cart extends Component {
   //to subtract from the quantity
   handleSubtractQuantity = id => {
     this.props.subtractQuantity(id);
+  };
+
+  handleClickOutside = evt => {
+    this.setState({ showing: false });
   };
 
   render() {
@@ -128,4 +133,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Cart);
+)(onClickOutside(Cart));
