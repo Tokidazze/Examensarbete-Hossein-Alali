@@ -1,5 +1,12 @@
 .cart {
   margin-right: 3.5rem;
+  cursor: pointer;
+}
+
+.badge {
+  position: relative;
+  bottom: 10px;
+  right: 10px;
 }
 
 .cart-content {

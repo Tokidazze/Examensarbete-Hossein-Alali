@@ -95,6 +95,9 @@ class Cart extends Component {
       <div className="cart">
         <span onClick={() => this.setState({ showing: !showing })}>
           <i className="fas fa-shopping-cart text-info" />
+          <span className="badge badge-pill badge-danger">
+            {this.props.items.addedItems.length}
+          </span>
         </span>
         {showing ? cartContent : null}
       </div>
