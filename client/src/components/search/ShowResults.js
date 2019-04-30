@@ -14,25 +14,26 @@ class ShowResults extends Component {
 
   render() {
     const { productsFilter } = this.props.search;
-    console.log(productsFilter);
 
     return (
-      <div className='results-container'>
-        {productsFilter.slice(-5).map((product, index) => (
-          <div
-            className='results'
-            key={index}
-            onClick={this.onClickProduct.bind(this, product._id)}
-          >
-            <div className='result-item'>
-              <img src={product.image} alt={product.title} />
-              <p className='result-title'>
-                <b>{product.title}</b>
-              </p>
-              <p className='result-price'>{product.price} SEK</p>
-            </div>
-          </div>
-        ))}
+      <div className="results-container">
+        {productsFilter !== undefined
+          ? productsFilter.slice(-5).map((product, index) => (
+              <div
+                className="results"
+                key={index}
+                onClick={this.onClickProduct.bind(this, product._id)}
+              >
+                <div className="result-item">
+                  <img src={product.image} alt={product.title} />
+                  <p className="result-title">
+                    <b>{product.title}</b>
+                  </p>
+                  <p className="result-price">{product.price} SEK</p>
+                </div>
+              </div>
+            ))
+          : null}
       </div>
     );
   }

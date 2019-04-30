@@ -24,6 +24,7 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
+
     case GET_ALL_PRODUCTS:
       return {
         ...state,
@@ -47,15 +48,24 @@ export default function(state = initialState, action) {
         loading: false
       };
 
+    // Remove item from cart
+    case REMOVE_FROM_CART:
+      let itemToRemove = state.addedItems.find(item => action.payload === item._id);
+      let hajj = state.addedItems.filter(item => action.payload !== item._id);
+
+      // Calculating the total
+      let newTotal = state.total - itemToRemove.price * itemToRemove.quantity;
+      return {
+        ...state,
+        addedItems: hajj,
+        total: newTotal
+      };
+
     // Add item to cart
     case ADD_TO_CART:
-      let addedItem = state.products.find(
-        product => product._id === action.payload
-      );
+      let addedItem = state.products.find(product => product._id === action.payload);
 
-      let existed_item = state.addedItems.find(
-        product => action.payload === product._id
-      );
+      let existed_item = state.addedItems.find(product => action.payload === product._id);
       if (existed_item) {
         // addedItem?
         existed_item.quantity += 1;
@@ -76,28 +86,9 @@ export default function(state = initialState, action) {
         };
       }
 
-    // Remove item from cart
-    case REMOVE_FROM_CART:
-      let itemToRemove = state.addedItems.find(
-        item => action.payload === item._id
-      );
-      let new_items = state.addedItems.filter(
-        item => action.payload !== item._id
-      );
-
-      // Calculating the total
-      let newTotal = state.total - itemToRemove.price * itemToRemove.quantity;
-      return {
-        ...state,
-        addedItems: new_items,
-        total: newTotal
-      };
-
     // Add to existing item
     case ADD_ITEM_QUANTITY:
-      let toAddItem = state.addedItems.find(
-        product => product._id === action.payload
-      );
+      let toAddItem = state.addedItems.find(product => product._id === action.payload);
       toAddItem.quantity += 1;
       let newTotalFromAdding = state.total + toAddItem.price;
       return {
@@ -107,14 +98,10 @@ export default function(state = initialState, action) {
 
     // Subtract from existing item
     case SUBTRACT_ITEM_QUANTITY:
-      let toSubtractItem = state.addedItems.find(
-        product => product._id === action.payload
-      );
+      let toSubtractItem = state.addedItems.find(product => product._id === action.payload);
       //if the quantity == 0 then it should be removed
       if (toSubtractItem.quantity === 1) {
-        let new_items = state.addedItems.filter(
-          item => item._id !== action.payload
-        );
+        let new_items = state.addedItems.filter(item => item._id !== action.payload);
         let newTotal = state.total - toSubtractItem.price;
         return {
           ...state,

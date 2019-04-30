@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  removeItem,
-  addQuantity,
-  subtractQuantity
-} from '../../actions/cartActions';
+import { removeItem, addQuantity, subtractQuantity } from '../../actions/cartActions';
 
 import './Order.css';
 
@@ -35,40 +31,40 @@ class Cart extends Component {
     let addedItems = this.props.items.addedItems.length ? (
       this.props.items.addedItems.map(item => {
         return (
-          <li className='cart-items' key={item._id}>
-            <div className='item-img'>
-              <img src={item.image} alt={item.image} className='' />
+          <li className="cart-items" key={item._id}>
+            <div className="item-img">
+              <img src={item.image} alt={item.image} className="" />
             </div>
 
-            <div className='item-desc'>
-              <span className='title'>
+            <div className="item-desc">
+              <span className="title">
                 <b>{item.title}</b>
               </span>
               <span>Price: {item.price} SEK</span>
               <span>Quantity: {item.quantity}</span>
-              <div className='add-remove'>
+              <div className="add-remove">
                 <button
                   onClick={() => {
                     this.handleAddQuantity(item._id);
                   }}
-                  className='btn'
+                  className="btn"
                 >
-                  <i className='fas fa-plus' />
+                  <i className="fas fa-plus" />
                 </button>
                 <button
                   onClick={() => {
                     this.handleSubtractQuantity(item._id);
                   }}
-                  className='btn'
+                  className="btn"
                 >
-                  <i className='fas fa-minus' />
+                  <i className="fas fa-minus" />
                 </button>
               </div>
               <button
                 onClick={() => {
                   this.handleRemove(item._id);
                 }}
-                className='btn btn-danger'
+                className="btn btn-danger"
               >
                 Remove
               </button>
@@ -81,14 +77,14 @@ class Cart extends Component {
     );
 
     const cartContent = (
-      <div className='container cart-content'>
+      <div className="container cart-content">
         <p>My added item(s)</p>
         {addedItems}
         Total: {this.props.items.total}
         <Link
           onClick={() => this.setState({ showing: !showing })}
-          to='/checkout/order'
-          className='btn btn-primary checkout-btn'
+          to="/checkout/order"
+          className="btn btn-primary checkout-btn"
         >
           Proceed to Checkout
         </Link>
@@ -96,9 +92,9 @@ class Cart extends Component {
     );
 
     return (
-      <div className='cart'>
+      <div className="cart">
         <span onClick={() => this.setState({ showing: !showing })}>
-          <i className='fas fa-shopping-cart text-info' />
+          <i className="fas fa-shopping-cart text-info" />
         </span>
         {showing ? cartContent : null}
       </div>
@@ -112,21 +108,21 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    removeItem: id => {
-      dispatch(removeItem(id));
-    },
-    addQuantity: id => {
-      dispatch(addQuantity(id));
-    },
-    subtractQuantity: id => {
-      dispatch(subtractQuantity(id));
-    }
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     removeItem: id => {
+//       dispatch(removeItem(id));
+//     },
+//     addQuantity: id => {
+//       dispatch(addQuantity(id));
+//     },
+//     subtractQuantity: id => {
+//       dispatch(subtractQuantity(id));
+//     }
+//   };
+// };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { removeItem, addQuantity, subtractQuantity }
 )(Cart);
