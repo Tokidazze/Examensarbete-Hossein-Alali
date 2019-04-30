@@ -9,8 +9,8 @@ import onClickOutside from 'react-onclickoutside';
 import './Sidebar.css';
 
 class Sidebar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       menuOpen: false
     };
@@ -22,6 +22,11 @@ class Sidebar extends Component {
     this.props.logoutUser();
   }
 
+  handleStateChange(state) {
+    this.setState({ menuOpen: state.isOpen });
+  }
+
+  // This can be used to close the menu, e.g. when a user clicks a menu item
   closeMenu() {
     this.setState({ menuOpen: false });
   }
@@ -34,23 +39,19 @@ class Sidebar extends Component {
     const { user, isAuthenticated } = this.props.auth;
 
     const authLinks = (
-      <ul className='container'>
+      <ul className="container">
         <li>
           <Link
             onClick={() => this.closeMenu()}
-            id='userpage'
-            className='menu-item'
-            to='/user/profile'
+            id="userpage"
+            className="menu-item"
+            to="/user/profile"
           >
             My Profile
           </Link>
         </li>
         <li>
-          <a
-            href='/login'
-            onClick={this.onLogoutClick.bind(this)}
-            className='menu-item'
-          >
+          <a href="/login" onClick={this.onLogoutClick.bind(this)} className="menu-item">
             Logout
           </a>
         </li>
@@ -58,24 +59,14 @@ class Sidebar extends Component {
     );
 
     const guestLinks = (
-      <ul className='container'>
+      <ul className="container">
         <li>
-          <Link
-            onClick={() => this.closeMenu()}
-            id='login'
-            className='menu-item'
-            to='/login'
-          >
+          <Link onClick={() => this.closeMenu()} id="login" className="menu-item" to="/login">
             Login
           </Link>
         </li>
         <li>
-          <Link
-            onClick={() => this.closeMenu()}
-            id='register'
-            className='menu-item'
-            to='/register'
-          >
+          <Link onClick={() => this.closeMenu()} id="register" className="menu-item" to="/register">
             Register
           </Link>
         </li>
@@ -83,13 +74,13 @@ class Sidebar extends Component {
     );
 
     const adminLinks = (
-      <ul className='container'>
+      <ul className="container">
         <li>
           <Link
             onClick={() => this.closeMenu()}
-            id='admin-dashboard'
-            className='menu-item'
-            to='/admin/dashboard'
+            id="admin-dashboard"
+            className="menu-item"
+            to="/admin/dashboard"
           >
             Admin Dashboard
           </Link>
@@ -97,9 +88,9 @@ class Sidebar extends Component {
         <li>
           <Link
             onClick={() => this.closeMenu()}
-            id='admin-product'
-            className='menu-item'
-            to='/admin/products'
+            id="admin-product"
+            className="menu-item"
+            to="/admin/products"
           >
             Admin Products
           </Link>
@@ -107,9 +98,9 @@ class Sidebar extends Component {
         <li>
           <Link
             onClick={() => this.closeMenu()}
-            id='admin-user'
-            className='menu-item'
-            to='/admin/users'
+            id="admin-user"
+            className="menu-item"
+            to="/admin/users"
           >
             Admin Users
           </Link>
@@ -117,9 +108,9 @@ class Sidebar extends Component {
         <li>
           <Link
             onClick={() => this.closeMenu()}
-            id='admin-order'
-            className='menu-item'
-            to='/admin/orders'
+            id="admin-order"
+            className="menu-item"
+            to="/admin/orders"
           >
             Admin Orders
           </Link>
@@ -128,15 +119,14 @@ class Sidebar extends Component {
     );
 
     return (
-      <Menu right isOpen={this.state.menuOpen}>
-        <ul className='container'>
+      <Menu
+        right
+        isOpen={this.state.menuOpen}
+        onStateChange={state => this.handleStateChange(state)}
+      >
+        <ul className="container">
           <li>
-            <Link
-              onClick={() => this.closeMenu()}
-              id='home'
-              className='menu-item'
-              to='/'
-            >
+            <Link onClick={() => this.closeMenu()} id="home" className="menu-item" to="/">
               Home
             </Link>
           </li>
@@ -144,9 +134,9 @@ class Sidebar extends Component {
           <li>
             <Link
               onClick={() => this.closeMenu()}
-              id='products'
-              className='menu-item'
-              to='/products'
+              id="products"
+              className="menu-item"
+              to="/products"
             >
               Products
             </Link>

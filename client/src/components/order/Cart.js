@@ -108,21 +108,21 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     removeItem: id => {
-//       dispatch(removeItem(id));
-//     },
-//     addQuantity: id => {
-//       dispatch(addQuantity(id));
-//     },
-//     subtractQuantity: id => {
-//       dispatch(subtractQuantity(id));
-//     }
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    removeItem: id => {
+      dispatch(removeItem(id));
+    },
+    addQuantity: id => {
+      dispatch(addQuantity(id));
+    },
+    subtractQuantity: id => {
+      dispatch(subtractQuantity(id));
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,
-  { removeItem, addQuantity, subtractQuantity }
+  mapDispatchToProps
 )(Cart);
