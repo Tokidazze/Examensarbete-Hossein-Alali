@@ -20,10 +20,12 @@ export const getAllOrders = () => dispatch => {
 };
 
 // Create order
-export const createOrder = (orderData, history) => dispatch => {
-  console.log(orderData);
+export const createOrder = (customerData, stripeToken, history) => dispatch => {
   axios
-    .post('/api/orders/create', orderData)
+    .post('/api/orders/payment', {
+      customerData: customerData,
+      stripeToken: stripeToken
+    })
     .then(res => {
       dispatch({
         type: CLEAR_CART,

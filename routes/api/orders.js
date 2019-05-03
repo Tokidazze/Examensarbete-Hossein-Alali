@@ -55,7 +55,6 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateOrderInput(req.body);
-    console.log('hej');
 
     // Check Validation
     if (!isValid) {
@@ -102,25 +101,72 @@ router.post(
   }
 );
 
-router.post('/payment', (req, res) => {
-  console.log('payment');
-  console.log(req.body.customerData);
-  const amount = 5000;
+router.post(
+  '/payment',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateOrderInput(req.body.customerData);
 
-  stripe.customers
-    .create({
-      email: req.body.stripeToken.email,
-      source: req.body.stripeToken.id
-    })
-    .then(customer =>
-      stripe.charges.create({
-        amount,
-        description: 'whatever',
-        currency: 'sek',
-        customer: customer.id
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    const allProducts = req.body.customerData.orderProducts.map(item => {
+      return {
+        productId: item._id,
+        productTitle: item.title,
+        quantity: item.quantity,
+        price: item.price
+      };
+    });
+
+    const newOrder = new Order({
+      userId: req.body.customerData.id,
+      orderProducts: allProducts,
+      totalSum: req.body.customerData.totalSum,
+      customerFirstName: req.body.customerData.customerFirstName,
+      customerLastName: req.body.customerData.customerLastName,
+      address: req.body.customerData.address,
+      zip: req.body.customerData.zip,
+      city: req.body.customerData.city
+    });
+
+    User.findById(newOrder.userId, function(err, user) {
+      if (err)
+        return res
+          .status(500)
+          .json({ error: 'error occurred when binding order to user' });
+      if (!user)
+        return res
+          .status(404)
+          .json({ error: 'error occurred trying to fetch user' });
+      user.orders.push(newOrder);
+      user.save();
+    });
+
+    newOrder
+      .save()
+      .then(order => res.json(order))
+      .catch(err => res.json(err));
+
+    const amount = newOrder.totalSum * 100;
+
+    stripe.customers
+      .create({
+        email: req.body.stripeToken.email,
+        source: req.body.stripeToken.id
       })
-    )
-    .then(charge => res.status(200));
-});
+      .then(customer =>
+        stripe.charges.create({
+          amount,
+          description: 'whatever',
+          currency: 'sek',
+          customer: customer.id
+        })
+      )
+      .then(charge => res.status(200));
+  }
+);
 
 module.exports = router;

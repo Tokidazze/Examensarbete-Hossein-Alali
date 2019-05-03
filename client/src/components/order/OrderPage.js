@@ -22,7 +22,7 @@ class OrderPage extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,25 +46,27 @@ class OrderPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  // onSubmit(e) {
+  //   e.preventDefault();
 
-    const orderData = {
-      customerFirstName: this.state.customerFirstName,
-      customerLastName: this.state.customerLastName,
-      address: this.state.address,
-      zip: this.state.zip,
-      city: this.state.city,
-      orderProducts: this.state.orderProducts,
-      totalSum: this.state.totalSum
-    };
+  //   const orderData = {
+  //     customerFirstName: this.state.customerFirstName,
+  //     customerLastName: this.state.customerLastName,
+  //     address: this.state.address,
+  //     zip: this.state.zip,
+  //     city: this.state.city,
+  //     orderProducts: this.state.orderProducts,
+  //     totalSum: this.state.totalSum
+  //   };
 
-    this.props.createOrder(orderData, this.props.history);
-  }
+  //   this.props.createOrder(orderData, this.props.history);
+  // }
 
   render() {
     const { errors } = this.state;
-    const hej = {
+
+    const customerData = {
+      id: this.props.auth.user.id,
       customerFirstName: this.state.customerFirstName,
       customerLastName: this.state.customerLastName,
       address: this.state.address,
@@ -141,7 +143,10 @@ class OrderPage extends Component {
                 />
 
                 {/* <input type='submit' className='btn btn-info btn-block mt-4' /> */}
-                <Payment customerData={hej} />
+                <Payment
+                  customerData={customerData}
+                  errors={this.state.errors}
+                />
               </form>
             </div>
           </div>

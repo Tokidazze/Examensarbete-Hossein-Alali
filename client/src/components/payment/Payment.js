@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { createOrder } from '../../actions/orderActions';
 
 class Payment extends Component {
   constructor(props) {
@@ -36,12 +40,9 @@ class Payment extends Component {
         locale: 'auto',
         token: token => {
           this.setState({ loading: true });
-          console.log(token);
-          // use fetch or some other AJAX library here if you dont want to use axios
-          axios.post('/api/orders/payment', {
-            stripeToken: token,
-            customerData: this.props.customerData
-          });
+
+          const { customerData } = this.props;
+          this.props.createOrder(customerData, token, this.props.history);
         }
       });
 
@@ -60,32 +61,37 @@ class Payment extends Component {
   }
 
   onStripeUpdate(e) {
+    e.preventDefault();
+
     this.stripeHandler.open({
       name: 'Chat&Shop',
       description: 'Games',
       panelLabel: 'Make Payment',
       allowRememberMe: false
     });
-    e.preventDefault();
   }
 
   render() {
     const { stripeLoading, loading } = this.state;
+    console.log(this.props);
     return (
       <div>
-        {loading || stripeLoading ? (
+        {/* {loading || stripeLoading ? (
           <p>loading..</p>
-        ) : (
-          <button
-            className='btn btn-info btn-block mt-4'
-            onClick={this.onStripeUpdate}
-          >
-            Checkout
-          </button>
-        )}
+        ) : ( */}
+        <button
+          className='btn btn-info btn-block mt-4'
+          onClick={this.onStripeUpdate}
+        >
+          Checkout
+        </button>
+        {/* )} */}
       </div>
     );
   }
 }
 
-export default Payment;
+export default connect(
+  null,
+  { createOrder }
+)(withRouter(Payment));
