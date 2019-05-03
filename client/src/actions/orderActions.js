@@ -21,6 +21,7 @@ export const getAllOrders = () => dispatch => {
 
 // Create order
 export const createOrder = (orderData, history) => dispatch => {
+  console.log(orderData);
   axios
     .post('/api/orders/create', orderData)
     .then(res => {

@@ -74,7 +74,8 @@ router.post('/login', (req, res) => {
           id: user.id,
           name: user.name,
           email: user.email,
-          role: user.role
+          role: user.role,
+          orders: user.orders
         }; // Create JWT payload
 
         // Sign Token
@@ -107,7 +108,8 @@ router.get(
       id: req.user.id,
       role: req.user.role,
       name: req.user.name,
-      email: req.user.email
+      email: req.user.email,
+      orders: req.user.orders
     });
   }
 );

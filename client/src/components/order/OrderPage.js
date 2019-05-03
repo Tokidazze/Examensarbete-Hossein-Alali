@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { createOrder } from '../../actions/orderActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import Payment from '../payment/Payment';
 
 class OrderPage extends Component {
   constructor() {
@@ -63,6 +64,15 @@ class OrderPage extends Component {
 
   render() {
     const { errors } = this.state;
+    const hej = {
+      customerFirstName: this.state.customerFirstName,
+      customerLastName: this.state.customerLastName,
+      address: this.state.address,
+      zip: this.state.zip,
+      city: this.state.city,
+      orderProducts: this.state.orderProducts,
+      totalSum: this.state.totalSum
+    };
 
     return (
       <div className='order-page'>
@@ -130,7 +140,8 @@ class OrderPage extends Component {
                   error={errors.city}
                 />
 
-                <input type='submit' className='btn btn-info btn-block mt-4' />
+                {/* <input type='submit' className='btn btn-info btn-block mt-4' /> */}
+                <Payment customerData={hej} />
               </form>
             </div>
           </div>

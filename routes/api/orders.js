@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const stripe = require('stripe')('sk_test_ACC53YkxOKvJhReQKoVio1JP00YawGn872');
 const passport = require('passport');
 
 // Load models
 const Order = require('../../models/Order');
+const User = require('../../models/User');
 
 // Validation
 const validateOrderInput = require('../../validation/order');
@@ -53,6 +55,7 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateOrderInput(req.body);
+    console.log('hej');
 
     // Check Validation
     if (!isValid) {
@@ -79,11 +82,45 @@ router.post(
       city: req.body.city
     });
 
+    User.findById(req.user.id, function(err, user) {
+      if (err)
+        return res
+          .status(500)
+          .json({ error: 'error occurred when binding order to user' });
+      if (!user)
+        return res
+          .status(404)
+          .json({ error: 'error occurred trying to fetch user' });
+      user.orders.push(newOrder);
+      user.save();
+    });
+
     newOrder
       .save()
       .then(order => res.json(order))
       .catch(err => res.json(err));
   }
 );
+
+router.post('/payment', (req, res) => {
+  console.log('payment');
+  console.log(req.body.customerData);
+  const amount = 5000;
+
+  stripe.customers
+    .create({
+      email: req.body.stripeToken.email,
+      source: req.body.stripeToken.id
+    })
+    .then(customer =>
+      stripe.charges.create({
+        amount,
+        description: 'whatever',
+        currency: 'sek',
+        customer: customer.id
+      })
+    )
+    .then(charge => res.status(200));
+});
 
 module.exports = router;
