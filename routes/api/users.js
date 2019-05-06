@@ -121,6 +121,17 @@ router.post('/login', (req, res) => {
   });
 });
 
+router.post('/chatAuth', (req, res) => {
+  const authData = chatkit.authenticate({
+    userId: req.query.user_id
+  });
+
+  res
+    .status(authData.status)
+    .set(authData.headers)
+    .send(authData.body);
+});
+
 // GET | Get current user
 router.get(
   '/me',

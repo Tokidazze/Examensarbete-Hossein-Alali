@@ -15,14 +15,13 @@ class ChatContainer extends Component {
 
   componentWillMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.getCurrentProfile();
-      this.setState({ username: this.props.profile.name });
+      this.setState({ username: this.props.auth.user.name });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.auth.isAuthenticated) {
-      this.setState({ username: nextProps.profile.name });
+    if (nextProps.auth.isAuthenticated) {
+      this.setState({ username: nextProps.auth.user.name });
     }
   }
 
@@ -45,11 +44,7 @@ class ChatContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile.profile
+  auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getCurrentProfile }
-)(ChatContainer);
+export default connect(mapStateToProps)(ChatContainer);
