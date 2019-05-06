@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const Chatkit = require('@pusher/chatkit-server');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
@@ -12,6 +13,13 @@ const validateLoginInput = require('../../validation/login');
 // Models
 const User = require('../../models/User');
 
+// New insatnce of chatkit with keys
+const chatkit = new Chatkit.default({
+  instanceLocator: 'v1:us1:1f8f2f41-6b31-4104-a400-4e26edca68c7',
+  key:
+    'ba6e8930-b6f3-47e3-8cd5-148c4470e1c5:qDqmhFlhXajrqsyfUg2wJm7wbGcGinHk9AN3NR1AAQ0='
+});
+
 // POST | Register a new user
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -21,26 +29,41 @@ router.post('/register', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ name: req.body.name }).then(user => {
     if (user) {
-      errors.email = 'Email already exists';
+      errors.name = 'Username already exists';
       return res.status(400).json(errors);
     } else {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-      });
-
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => res.json(user))
+      User.findOne({ email: req.body.email }).then(user => {
+        if (user) {
+          errors.email = 'Email already exists';
+          return res.status(400).json(errors);
+        } else {
+          chatkit
+            .createUser({
+              name: req.body.name,
+              id: req.body.name
+            })
+            .then(() => res.sendStatus(201))
             .catch(err => console.log(err));
-        });
+
+          const newUser = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+          });
+
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser
+                .save()
+                .then(user => res.json(user))
+                .catch(err => console.log(err));
+            });
+          });
+        }
       });
     }
   });
