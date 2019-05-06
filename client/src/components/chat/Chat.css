@@ -13,8 +13,17 @@
 }
 
 .chat-box {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  max-height: 900px;
   background: white;
   border-radius: 5px;
+  overflow: scroll;
+  overflow-wrap: break-word;
+}
+
+.message-ul {
+  margin-top: 1rem;
+  padding-inline-end: 40px;
 }
