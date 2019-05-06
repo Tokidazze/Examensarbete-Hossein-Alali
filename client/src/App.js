@@ -17,6 +17,7 @@ import {
   AdminEditProduct,
   AdminUser,
   AdminEditUser,
+  ChatContainer,
   Login,
   Register,
   Navbar,
@@ -115,6 +116,7 @@ class App extends Component {
             {/* Auth Routes */}
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <ChatContainer />
             <Footer />
           </div>
         </Router>

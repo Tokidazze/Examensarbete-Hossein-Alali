@@ -72,7 +72,7 @@ class Payment extends Component {
   }
 
   render() {
-    const { stripeLoading, loading } = this.state;
+    // const { stripeLoading, loading } = this.state;
     console.log(this.props);
     return (
       <div>

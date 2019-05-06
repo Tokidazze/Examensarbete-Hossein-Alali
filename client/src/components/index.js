@@ -18,3 +18,4 @@ export { default as LandingPageCards } from './cards/LandingPageCards';
 export { default as Navbar } from './layout/Navbar';
 export { default as PrivateRoute } from './common/PrivateRoute';
 export { default as Spinner } from './common/Spinner';
+export { default as ChatContainer } from './chat/ChatContainer';
