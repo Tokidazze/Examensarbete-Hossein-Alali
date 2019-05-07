@@ -23,6 +23,9 @@ class AdminEditProduct extends Component {
   }
 
   componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
     this.setState({
       id: this.props.location.state.key._id,
       title: this.props.location.state.key.title,
@@ -32,12 +35,6 @@ class AdminEditProduct extends Component {
       category: this.props.location.state.key.category,
       stock: this.props.location.state.key.stock
     });
-  }
-
-  componentWillMount() {
-    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
-      this.props.history.push('/');
-    }
   }
 
   onChange(e) {

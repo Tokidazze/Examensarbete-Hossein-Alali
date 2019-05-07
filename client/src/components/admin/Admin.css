@@ -17,3 +17,17 @@
   max-height: 200px;
   overflow-y: -webkit-paged-y;
 }
+
+.admin-product-container::before {
+  content: '';
+  display: block;
+  height: 40px;
+}
+
+.table-container {
+  table-layout: flex;
+}
+
+.break-word {
+  word-break: break-all;
+}

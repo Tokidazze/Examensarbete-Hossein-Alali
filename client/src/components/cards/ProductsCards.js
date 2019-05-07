@@ -35,7 +35,7 @@ class ProductsCards extends Component {
   filterGamesByCategory(gamesList, gameCategories) {
     let completeGameList = [];
 
-    let res = gamesList.map(game => {
+    gamesList.map(game => {
       if (this.arrContainsCategory(gameCategories, game.category)) {
         completeGameList.push(game);
       }
@@ -94,11 +94,7 @@ class ProductsCards extends Component {
             />
             <div className='card-body'>
               <p className='card-text'>{product.price} SEK</p>
-              <div
-                className='btn-group'
-                role='group'
-                aria-label='Basic example'
-              >
+              <div className='btn-group' role='group' aria-label='Basic example'>
                 <button
                   onClick={this.onCartClick.bind(this, product._id)}
                   className='btn btn-secondary'
@@ -130,11 +126,7 @@ class ProductsCards extends Component {
             />
             <div className='card-body'>
               <p className='card-text'>{product.price} SEK</p>
-              <div
-                className='btn-group'
-                role='group'
-                aria-label='Basic example'
-              >
+              <div className='btn-group' role='group' aria-label='Basic example'>
                 <button
                   onClick={this.onCartClick.bind(this, product._id)}
                   className='btn btn-secondary'
@@ -158,14 +150,9 @@ class ProductsCards extends Component {
       <div className='product-cards'>
         <div className='container cards-topper'>
           <p>Games: {products.length}</p>
-          <Filterbar
-            products={products}
-            onChange={this.handleCategoryChange.bind(this)}
-          />
+          <Filterbar products={products} onChange={this.handleCategoryChange.bind(this)} />
         </div>
-        {filteredGamesCard.props.children.length > 0
-          ? filteredGamesCard
-          : allProducts}
+        {filteredGamesCard.props.children.length > 0 ? filteredGamesCard : allProducts}
       </div>
     );
   }

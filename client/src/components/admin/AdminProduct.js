@@ -45,35 +45,59 @@ class AdminProduct extends Component {
 
   render() {
     const products = this.state.allProducts.map(product => (
-      <tr key={product._id}>
-        <th scope='row'>
-          <button
-            onClick={this.onClickEdit.bind(this, product._id, product)}
-            type='button'
-            className='btn btn-info'
-          >
-            Edit
-          </button>
-          <button
-            onClick={this.onClickDelete.bind(this, product._id)}
-            type='button'
-            className='btn btn-danger'
-          >
-            Delete
-          </button>
-        </th>
-        <td>{product.title}</td>
-        <td className='desc-container'>{product.description}</td>
-        <td>{product.image}</td>
-        <td>{product.price}</td>
-        <td>
-          {product.category.slice(0, 6).map((category, index) => (
-            <div key={index}>{category}</div>
+      <tbody key={product._id} className='admin-product-container'>
+        <tr>
+          <th scope='col'>Title</th>
+          <td>{product.title}</td>
+        </tr>
+        <tr scope='row'>
+          <th scope='col'>Actions</th>
+          <td>
+            <button
+              onClick={this.onClickEdit.bind(this, product._id, product)}
+              type='button'
+              className='btn btn-info'
+            >
+              Edit
+            </button>
+            <button
+              onClick={this.onClickDelete.bind(this, product._id)}
+              type='button'
+              className='btn btn-danger'
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope='col'>Desciption</th>
+          <td className='break-word'>{product.description}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Image</th>
+          <td className='break-word'>{product.image}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Price</th>
+          <td>{product.price}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Category</th>
+          {product.category.map((category, index) => (
+            <td className='td-container' key={index}>
+              {category}
+            </td>
           ))}
-        </td>
-        <td>{product.stock}</td>
-        <td>{product.date}</td>
-      </tr>
+        </tr>
+        <tr>
+          <th scope='col'>Stock</th>
+          <td>{product.stock}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Date</th>
+          <td>{product.date}</td>
+        </tr>
+      </tbody>
     ));
     return (
       <div className='container'>
@@ -84,21 +108,7 @@ class AdminProduct extends Component {
           Add product
         </Link>
         <div className='table-responsive'>
-          <table className='table table-hover'>
-            <thead>
-              <tr>
-                <th scope='col'>Actions</th>
-                <th scope='col'>Title</th>
-                <th scope='col'>Description</th>
-                <th scope='col'>Image</th>
-                <th scope='col'>Price</th>
-                <th scope='col'>Category</th>
-                <th scope='col'>Stock</th>
-                <th scope='col'>Date</th>
-              </tr>
-            </thead>
-            <tbody>{products}</tbody>
-          </table>
+          <table className='table table-hover table-container'>{products}</table>
         </div>
       </div>
     );

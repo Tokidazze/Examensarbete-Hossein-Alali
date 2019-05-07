@@ -34,42 +34,46 @@ class AdminOrder extends Component {
   // first, last, address, zip, city, totalSum, date, orderProducts.title, quantity, price
   render() {
     const orders = this.state.allOrders.map(order => (
-      <tr key={order._id}>
-        <th scope='row'>{order.customerFirstName}</th>
-        <td>{order.customerLastName}</td>
-        <td>{order.address}</td>
-        <td>{order.zip}</td>
-        <td>{order.city}</td>
-        <td>
-          {order.orderProducts.map(products => (
-            <div key={products._id}>
-              <li className='product-title'>
-                {products.productTitle} x {products.quantity}
-              </li>
-              <li>{products.price}</li>
-            </div>
-          ))}
-        </td>
-        <td>{order.totalSum}</td>
-        <td>{order.date}</td>
+      <tbody key={order._id} className='admin-product-container'>
+        <tr>
+          <th scope='col'>Firstname</th>
+          <td>{order.customerFirstName}</td>
+        </tr>
 
-        {/* <td>
-          <button
-            onClick={this.onClickEdit.bind(this, user._id, user)}
-            type='button'
-            className='btn btn-info'
-          >
-            Edit
-          </button>
-          <button
-            onClick={this.onClickDelete.bind(this, user._id)}
-            type='button'
-            className='btn btn-danger'
-          >
-            Delete
-          </button>
-        </td> */}
-      </tr>
+        <tr>
+          <th scope='col'>Lastname</th>
+          <td className='break-word'>{order.customerLastName}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Address</th>
+          <td className='break-word'>{order.address}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Zip</th>
+          <td>{order.zip}</td>
+        </tr>
+        <tr>
+          <th scope='col'>City</th>
+          <td>{order.city}</td>
+        </tr>
+        <tr>
+          <th scope='col'>Products</th>
+          {order.orderProducts.map((product, index) => (
+            <td className='td-container' key={index}>
+              {product.productTitle} x{product.quantity}
+              <p>{product.price}</p>
+            </td>
+          ))}
+        </tr>
+        <tr>
+          <th scope='col'>Total</th>
+          <td>{order.totalSum} SEK</td>
+        </tr>
+        <tr>
+          <th scope='col'>Date</th>
+          <td>{order.date}</td>
+        </tr>
+      </tbody>
     ));
     return (
       <div className='container'>
@@ -77,21 +81,7 @@ class AdminOrder extends Component {
           Back
         </Link>
         <div className='table-responsive'>
-          <table className='table table-hover'>
-            <thead>
-              <tr>
-                <th scope='col'>Customer Firstname</th>
-                <th scope='col'>Customer Lastname</th>
-                <th scope='col'>Address</th>
-                <th scope='col'>Zip</th>
-                <th scope='col'>City</th>
-                <th scope='col'>Order</th>
-                <th scope='col'>Total Sum</th>
-                <th scope='col'>Date</th>
-              </tr>
-            </thead>
-            <tbody>{orders}</tbody>
-          </table>
+          <table className='table table-hover'>{orders}</table>
         </div>
       </div>
     );
