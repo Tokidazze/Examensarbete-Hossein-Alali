@@ -9,7 +9,8 @@ class ChatContainer extends Component {
   constructor() {
     super();
     this.state = {
-      username: ''
+      username: '',
+      showing: false
     };
   }
 
@@ -26,17 +27,23 @@ class ChatContainer extends Component {
   }
 
   render() {
+    const { showing } = this.state;
+
     const noUsername = <div>Please sign in to Chat!</div>;
 
     const usernameExists = <ChatScreen username={this.state.username} />;
 
+    const showingContent = (
+      <div className="chat-box">
+        {this.props.auth.isAuthenticated ? usernameExists : noUsername}
+      </div>
+    );
+
     return (
-      <div className='chat-container'>
-        <div className='chat-box'>
-          {this.props.auth.isAuthenticated ? usernameExists : noUsername}
-        </div>
-        <div className='chat-icon'>
-          <i className='fas fa-comment-alt' />
+      <div className="chat-container">
+        {showing ? showingContent : null}
+        <div className="chat-icon" onClick={() => this.setState({ showing: !showing })}>
+          <i className="fas fa-comment-alt" />
         </div>
       </div>
     );

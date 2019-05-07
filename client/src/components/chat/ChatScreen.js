@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessageForm';
+import Spinner from '../common/Spinner';
 
 class ChatScreen extends Component {
   constructor() {
@@ -54,10 +55,11 @@ class ChatScreen extends Component {
   }
 
   render() {
-    console.log(this.props);
+    const messageList = <MessageList messages={this.state.messages} />;
+    const spinner = <Spinner />;
     return (
       <div>
-        <MessageList messages={this.state.messages} />
+        <div>{this.state.messages.length > 0 ? messageList : spinner}</div>
         <SendMessageForm onSubmit={this.sendMessage} />
       </div>
     );
