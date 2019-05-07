@@ -19,6 +19,12 @@ class AdminOrder extends Component {
     this.props.getAllOrders();
   }
 
+  componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       allOrders: nextProps.order.orders
@@ -93,7 +99,8 @@ class AdminOrder extends Component {
 }
 
 const mapStateToProps = state => ({
-  order: state.order
+  order: state.order,
+  auth: state.auth
 });
 
 export default connect(

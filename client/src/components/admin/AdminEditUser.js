@@ -19,6 +19,10 @@ class AdminEditUser extends Component {
   }
 
   componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
+
     this.setState({
       id: this.props.location.state.key._id,
       name: this.props.location.state.key.name,
@@ -75,7 +79,11 @@ class AdminEditUser extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { updateUser }
 )(withRouter(AdminEditUser));

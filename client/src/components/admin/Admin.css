@@ -12,3 +12,8 @@
 .product-title {
   min-width: 130px;
 }
+
+.desc-container {
+  max-height: 200px;
+  overflow-y: -webkit-paged-y;
+}

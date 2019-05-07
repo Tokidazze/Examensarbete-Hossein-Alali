@@ -9,6 +9,12 @@ class AdminDashboard extends Component {
     this.props.getCurrentProfile();
   }
 
+  componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
+  }
+
   render() {
     const { profile, loading } = this.props.profile;
 
@@ -38,7 +44,8 @@ class AdminDashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth
 });
 
 export default connect(

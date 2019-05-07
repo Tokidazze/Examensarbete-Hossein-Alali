@@ -25,6 +25,11 @@ class OrderPage extends Component {
     // this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (!this.props.products.addedItems.length) {
+      this.props.history.push('/');
+    }
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
@@ -81,9 +86,7 @@ class OrderPage extends Component {
         <div className='container'>
           <div className='row'>
             <div className='col-md-8 m-auto'>
-              <h1 className='display-4 text-center register-header'>
-                My order
-              </h1>
+              <h1 className='display-4 text-center register-header'>My order</h1>
               <div>
                 <div>
                   {this.state.orderProducts.map((item, index) => (
@@ -143,10 +146,7 @@ class OrderPage extends Component {
                 />
 
                 {/* <input type='submit' className='btn btn-info btn-block mt-4' /> */}
-                <Payment
-                  customerData={customerData}
-                  errors={this.state.errors}
-                />
+                <Payment customerData={customerData} errors={this.state.errors} />
               </form>
             </div>
           </div>

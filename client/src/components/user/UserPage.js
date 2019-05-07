@@ -34,6 +34,7 @@ class UserPage extends Component {
             {profile.orders.length > 0
               ? profile.orders.map((order, index) => (
                   <div className='table-responsive' key={index}>
+                    <p>Order</p>
                     <table className='table table-hover'>
                       <tbody>
                         <tr>

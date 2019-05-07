@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -78,6 +78,7 @@ class Login extends Component {
                 />
                 <input type='submit' className='btn btn-info btn-block mt-4' />
               </form>
+              Don't have an account yet? Please <Link to='/register'>register here</Link>
             </div>
           </div>
         </div>

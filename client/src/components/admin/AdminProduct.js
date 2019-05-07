@@ -18,6 +18,12 @@ class AdminProduct extends Component {
     this.props.getAllProducts();
   }
 
+  componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       allProducts: nextProps.product.products
@@ -57,7 +63,7 @@ class AdminProduct extends Component {
           </button>
         </th>
         <td>{product.title}</td>
-        <td>{product.description}</td>
+        <td className='desc-container'>{product.description}</td>
         <td>{product.image}</td>
         <td>{product.price}</td>
         <td>
@@ -100,7 +106,8 @@ class AdminProduct extends Component {
 }
 
 const mapStateToProps = state => ({
-  product: state.product
+  product: state.product,
+  auth: state.auth
 });
 
 export default connect(

@@ -19,6 +19,12 @@ class AdminUser extends Component {
     this.props.getAllUsers();
   }
 
+  componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       allUsers: nextProps.admin.getUsers
@@ -84,7 +90,8 @@ class AdminUser extends Component {
 }
 
 const mapStateToProps = state => ({
-  admin: state.admin
+  admin: state.admin,
+  auth: state.auth
 });
 
 export default connect(

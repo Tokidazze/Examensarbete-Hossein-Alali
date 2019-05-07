@@ -12,14 +12,20 @@ class AdminCreateProduct extends Component {
       title: '',
       description: '',
       image: '',
-      price: null,
+      price: '',
       category: [],
-      stock: null,
+      stock: '',
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
   }
 
   onChange(e) {
@@ -42,6 +48,7 @@ class AdminCreateProduct extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className='create-product'>
         <div className='container'>
@@ -102,7 +109,11 @@ class AdminCreateProduct extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { createProduct }
 )(withRouter(AdminCreateProduct));

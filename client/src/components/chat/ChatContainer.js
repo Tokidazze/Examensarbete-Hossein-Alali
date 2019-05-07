@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profileActions';
+import onClickOutside from 'react-onclickoutside';
+import ChatScreen from './ChatScreen';
 
 import './Chat.css';
-import ChatScreen from './ChatScreen';
 
 class ChatContainer extends Component {
   constructor() {
@@ -26,6 +26,10 @@ class ChatContainer extends Component {
     }
   }
 
+  handleClickOutside = evt => {
+    this.setState({ showing: false });
+  };
+
   render() {
     const { showing } = this.state;
 
@@ -34,16 +38,16 @@ class ChatContainer extends Component {
     const usernameExists = <ChatScreen username={this.state.username} />;
 
     const showingContent = (
-      <div className="chat-box">
+      <div className='chat-box'>
         {this.props.auth.isAuthenticated ? usernameExists : noUsername}
       </div>
     );
 
     return (
-      <div className="chat-container">
+      <div className='chat-container'>
         {showing ? showingContent : null}
-        <div className="chat-icon" onClick={() => this.setState({ showing: !showing })}>
-          <i className="fas fa-comment-alt" />
+        <div className='chat-icon' onClick={() => this.setState({ showing: !showing })}>
+          <i className='fas fa-comment-alt' />
         </div>
       </div>
     );
@@ -54,4 +58,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(ChatContainer);
+export default connect(mapStateToProps)(onClickOutside(ChatContainer));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -95,6 +95,9 @@ class Register extends Component {
                 />
                 <input type='submit' className='btn btn-info btn-block mt-4' />
               </form>
+              <p>
+                Have an account already? Please <Link to='/login'>sign in here</Link>
+              </p>
             </div>
           </div>
         </div>

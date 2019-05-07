@@ -34,6 +34,12 @@ class AdminEditProduct extends Component {
     });
   }
 
+  componentWillMount() {
+    if (this.props.auth.isAuthenticated && !this.props.auth.user.role) {
+      this.props.history.push('/');
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -56,56 +62,56 @@ class AdminEditProduct extends Component {
 
   render() {
     return (
-      <div className="edit-user">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
+      <div className='edit-user'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-8 m-auto'>
               <form noValidate onSubmit={this.onSubmit}>
-                <h3 className="text-center">Edit product</h3>
+                <h3 className='text-center'>Edit product</h3>
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Title"
-                  name="title"
+                  type='text'
+                  placeholder='Title'
+                  name='title'
                   value={this.state.title}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Description"
-                  name="description"
+                  type='text'
+                  placeholder='Description'
+                  name='description'
                   value={this.state.description}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Image"
-                  name="image"
+                  type='text'
+                  placeholder='Image'
+                  name='image'
                   value={this.state.image}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Price"
-                  name="price"
+                  type='text'
+                  placeholder='Price'
+                  name='price'
                   value={this.state.price}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Category"
-                  name="category"
+                  type='text'
+                  placeholder='Category'
+                  name='category'
                   value={this.state.category}
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  type="text"
-                  placeholder="Stock"
-                  name="stock"
+                  type='text'
+                  placeholder='Stock'
+                  name='stock'
                   value={this.state.stock}
                   onChange={this.onChange}
                 />
 
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input type='submit' className='btn btn-info btn-block mt-4' />
               </form>
             </div>
           </div>
@@ -115,7 +121,11 @@ class AdminEditProduct extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { updateProduct }
 )(withRouter(AdminEditProduct));

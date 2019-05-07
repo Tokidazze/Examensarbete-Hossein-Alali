@@ -79,10 +79,7 @@ class Payment extends Component {
         {/* {loading || stripeLoading ? (
           <p>loading..</p>
         ) : ( */}
-        <button
-          className='btn btn-info btn-block mt-4'
-          onClick={this.onStripeUpdate}
-        >
+        <button className='btn btn-info btn-block mt-4' onClick={this.onStripeUpdate}>
           Checkout
         </button>
         {/* )} */}
