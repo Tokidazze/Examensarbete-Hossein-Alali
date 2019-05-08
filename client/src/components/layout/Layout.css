@@ -33,3 +33,10 @@
 .input-group > input {
   border: 1px solid #17a2b8;
 }
+
+@media only screen and (min-width: 770px) {
+  .carousel-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}

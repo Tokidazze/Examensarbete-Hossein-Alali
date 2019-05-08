@@ -35,3 +35,27 @@ div.btn-group {
 .cards-topper > p {
   margin-right: 1em;
 }
+
+@media only screen and (min-width: 577px) {
+  .card-img-top {
+    max-height: none;
+  }
+}
+
+@media only screen and (min-width: 770px) {
+  .game-card {
+    flex: 0 0 31%;
+  }
+}
+
+@media only screen and (min-width: 990px) {
+  .game-card {
+    flex: 0 0 23%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .game-card {
+    max-height: 477px;
+  }
+}

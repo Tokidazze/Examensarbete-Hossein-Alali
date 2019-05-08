@@ -50,56 +50,56 @@ router.get(
 );
 
 // POST | Create new order
-router.post(
-  '/create',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validateOrderInput(req.body);
+// router.post(
+//   '/create',
+//   passport.authenticate('jwt', { session: false }),
+//   (req, res) => {
+//     const { errors, isValid } = validateOrderInput(req.body);
 
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+//     // Check Validation
+//     if (!isValid) {
+//       return res.status(400).json(errors);
+//     }
 
-    const allProducts = req.body.orderProducts.map(item => {
-      return {
-        productId: item._id,
-        productTitle: item.title,
-        quantity: item.quantity,
-        price: item.price
-      };
-    });
+//     const allProducts = req.body.orderProducts.map(item => {
+//       return {
+//         productId: item._id,
+//         productTitle: item.title,
+//         quantity: item.quantity,
+//         price: item.price
+//       };
+//     });
 
-    const newOrder = new Order({
-      userId: req.user.id,
-      orderProducts: allProducts,
-      totalSum: req.body.totalSum,
-      customerFirstName: req.body.customerFirstName,
-      customerLastName: req.body.customerLastName,
-      address: req.body.address,
-      zip: req.body.zip,
-      city: req.body.city
-    });
+//     const newOrder = new Order({
+//       userId: req.user.id,
+//       orderProducts: allProducts,
+//       totalSum: req.body.totalSum,
+//       customerFirstName: req.body.customerFirstName,
+//       customerLastName: req.body.customerLastName,
+//       address: req.body.address,
+//       zip: req.body.zip,
+//       city: req.body.city
+//     });
 
-    User.findById(req.user.id, function(err, user) {
-      if (err)
-        return res
-          .status(500)
-          .json({ error: 'error occurred when binding order to user' });
-      if (!user)
-        return res
-          .status(404)
-          .json({ error: 'error occurred trying to fetch user' });
-      user.orders.push(newOrder);
-      user.save();
-    });
+//     User.findById(req.user.id, function(err, user) {
+//       if (err)
+//         return res
+//           .status(500)
+//           .json({ error: 'error occurred when binding order to user' });
+//       if (!user)
+//         return res
+//           .status(404)
+//           .json({ error: 'error occurred trying to fetch user' });
+//       user.orders.push(newOrder);
+//       user.save();
+//     });
 
-    newOrder
-      .save()
-      .then(order => res.json(order))
-      .catch(err => res.json(err));
-  }
-);
+//     newOrder
+//       .save()
+//       .then(order => res.json(order))
+//       .catch(err => res.json(err));
+//   }
+// );
 
 router.post(
   '/payment',

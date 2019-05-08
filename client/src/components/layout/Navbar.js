@@ -22,7 +22,7 @@ class Navbar extends Component {
             <Sidebar />
           </div>
         </nav>
-        <div className='container form-container'>
+        <div className=' form-container'>
           <Search />
         </div>
       </div>
