@@ -1,5 +1,9 @@
 .App {
   background-color: #f8f9fa;
   position: relative;
+}
+
+.content {
+  position: relative;
   min-height: 100vh;
 }
