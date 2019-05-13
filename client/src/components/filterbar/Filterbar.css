@@ -17,3 +17,9 @@
 .form-check {
   padding-bottom: 0.5rem;
 }
+
+@media only screen and (min-width: 1365px) {
+  .filter-bar {
+    position: relative;
+  }
+}

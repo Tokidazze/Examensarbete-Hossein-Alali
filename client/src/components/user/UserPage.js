@@ -21,8 +21,6 @@ class UserPage extends Component {
     } else {
       dashboardContent = (
         <div className='container'>
-          <p>Welcome {profile.name}!</p>
-
           <div className='container user-info'>
             <h4 className=''>User information</h4>
             <p>Username: {profile.name}</p>
