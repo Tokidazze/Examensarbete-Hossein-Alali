@@ -3,9 +3,11 @@
   align-items: center;
   background-image: url('../../img/bg-img.png');
   width: 100%;
+  /* max-width: 800px; */
   height: 190px;
   background-position: center;
   background-size: cover;
+  margin: 0 auto;
   margin-bottom: 2rem;
 }
 
@@ -34,9 +36,6 @@
   border: 1px solid #17a2b8;
 }
 
-@media only screen and (min-width: 770px) {
-  .carousel-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
+.navbar-container {
+  margin-top: 0;
 }

@@ -42,7 +42,7 @@ class AdminOrder extends Component {
 
         <tr>
           <th scope='col'>Lastname</th>
-          <td className='break-word'>{order.customerLastName}</td>
+          <td>{order.customerLastName}</td>
         </tr>
         <tr>
           <th scope='col'>Address</th>

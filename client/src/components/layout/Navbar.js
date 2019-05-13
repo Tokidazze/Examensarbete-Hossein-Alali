@@ -11,7 +11,7 @@ import './Layout.css';
 class Navbar extends Component {
   render() {
     return (
-      <div>
+      <div className='container navbar-container'>
         <nav className='navbar navbar-light bg-light'>
           <Link className='navbar-brand' to='/'>
             <img id='logo' src={logo} alt='logo' />
@@ -22,7 +22,7 @@ class Navbar extends Component {
             <Sidebar />
           </div>
         </nav>
-        <div className=' form-container'>
+        <div className='container form-container'>
           <Search />
         </div>
       </div>

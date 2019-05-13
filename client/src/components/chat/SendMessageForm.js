@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Chat.css';
+
 class SendMessageForm extends Component {
   constructor(props) {
     super(props);

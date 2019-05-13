@@ -1,8 +1,9 @@
 .chat-container {
   position: fixed;
   right: 15px;
-
+  z-index: 2;
   bottom: 15px;
+  cursor: pointer;
 }
 
 .chat-icon {
@@ -21,11 +22,15 @@
   max-height: 500px;
   background: white;
   border-radius: 5px;
-  overflow: scroll;
+  overflow-y: scroll;
   overflow-wrap: break-word;
 }
 
 .message-ul {
   margin-top: 1rem;
   padding-inline-end: 40px;
+}
+
+.form-group {
+  margin: 0;
 }

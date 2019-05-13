@@ -31,11 +31,7 @@ class LandingPageCards extends Component {
             <div className='card-body'>
               {/* <h5 className='card-title'>{product.title}</h5> */}
               <p className='card-text'>{product.price} SEK</p>
-              <div
-                className='btn-group'
-                role='group'
-                aria-label='Basic example'
-              >
+              <div className='btn-group' role='group' aria-label='Basic example'>
                 <button
                   onClick={this.onCartClick.bind(this, product._id)}
                   className='btn btn-secondary'

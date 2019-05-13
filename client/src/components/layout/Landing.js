@@ -14,17 +14,9 @@ class Landing extends Component {
 
     return (
       <div className=''>
-        <div
-          id='games-carousel'
-          className='carousel slide'
-          data-ride='carousel'
-        >
+        <div id='games-carousel' className='container carousel slide' data-ride='carousel'>
           <ol className='carousel-indicators'>
-            <li
-              data-target='#games-carousel'
-              data-slide-to='0'
-              className='active'
-            />
+            <li data-target='#games-carousel' data-slide-to='0' className='active' />
             <li data-target='#games-carousel' data-slide-to='1' />
             <li data-target='#games-carousel' data-slide-to='2' />
           </ol>
