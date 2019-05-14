@@ -79,6 +79,10 @@ li {
   list-style: none;
 }
 
+.menu-item {
+  color: #17a2b8;
+}
+
 .menu-item:hover {
   color: white;
   text-decoration: none;

@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .game-card {
@@ -11,6 +11,8 @@
   margin: 5px;
   height: 100%;
   max-height: 421px;
+  margin: 0 auto;
+  margin-bottom: 1em;
 }
 
 .card-img-top {

@@ -14,9 +14,17 @@ class Landing extends Component {
 
     return (
       <div className=''>
-        <div id='games-carousel' className='container carousel slide' data-ride='carousel'>
+        <div
+          id='games-carousel'
+          className='container carousel slide'
+          data-ride='carousel'
+        >
           <ol className='carousel-indicators'>
-            <li data-target='#games-carousel' data-slide-to='0' className='active' />
+            <li
+              data-target='#games-carousel'
+              data-slide-to='0'
+              className='active'
+            />
             <li data-target='#games-carousel' data-slide-to='1' />
             <li data-target='#games-carousel' data-slide-to='2' />
           </ol>
@@ -40,9 +48,9 @@ class Landing extends Component {
               </Link>
             </div>
             <div className='carousel-item'>
-              <Link to='/products/5cadf3e8041fd1e5850417c4'>
+              <Link to='/products/5cdaad9ed0f7db045cb5b86f'>
                 <img
-                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneren_1554900236.jpg'
+                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneronen_1557812205.jpg'
                   className='d-block w-100'
                   alt='img-3'
                 />

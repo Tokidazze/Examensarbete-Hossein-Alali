@@ -20,7 +20,7 @@ class LandingPageCards extends Component {
     const products = this.props.products;
     return (
       <div className='container cards-container'>
-        {products.slice(-10).map((product, index) => (
+        {products.slice(-12).map((product, index) => (
           <div className='card game-card' key={index}>
             <img
               src={product.image}
@@ -31,7 +31,11 @@ class LandingPageCards extends Component {
             <div className='card-body'>
               {/* <h5 className='card-title'>{product.title}</h5> */}
               <p className='card-text'>{product.price} SEK</p>
-              <div className='btn-group' role='group' aria-label='Basic example'>
+              <div
+                className='btn-group'
+                role='group'
+                aria-label='Basic example'
+              >
                 <button
                   onClick={this.onCartClick.bind(this, product._id)}
                   className='btn btn-secondary'

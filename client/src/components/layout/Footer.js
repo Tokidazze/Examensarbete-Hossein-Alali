@@ -6,7 +6,7 @@ const Footer = () => {
       This is a student project. The goal is to make a webshop for online
       purchases
       <br />
-      Copyright &copy; {new Date().getFullYear()} ChatShop
+      No copyright whatsoever!
     </footer>
   );
 };
