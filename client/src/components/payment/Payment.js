@@ -73,13 +73,16 @@ class Payment extends Component {
 
   render() {
     // const { stripeLoading, loading } = this.state;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         {/* {loading || stripeLoading ? (
           <p>loading..</p>
         ) : ( */}
-        <button className='btn btn-info btn-block mt-4' onClick={this.onStripeUpdate}>
+        <button
+          className='btn btn-info btn-block mt-4'
+          onClick={this.onStripeUpdate}
+        >
           Checkout
         </button>
         {/* )} */}
