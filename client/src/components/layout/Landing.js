@@ -4,6 +4,10 @@ import { Link, withRouter } from 'react-router-dom';
 import { getAllProducts } from '../../actions/productActions';
 import LandingPageCards from '../cards/LandingPageCards';
 
+import sekiro from '../../img/banner_1.jpg';
+import plague from '../../img/banner_2.jpg';
+import tropico from '../../img/banner_3.jpg';
+
 class Landing extends Component {
   componentDidMount() {
     this.props.getAllProducts();
@@ -31,29 +35,17 @@ class Landing extends Component {
           <div className='carousel-inner'>
             <div className='carousel-item active'>
               <Link to='/products/5ca7247a47082a56e8967976'>
-                <img
-                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneronen_1553244008.jpg'
-                  className='d-block w-100'
-                  alt='img-1'
-                />
+                <img src={sekiro} className='d-block w-100' alt='img-1' />
               </Link>
             </div>
             <div className='carousel-item'>
               <Link to='/products/5cadf442041fd1e5850417c5'>
-                <img
-                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneren_1554901906.jpg'
-                  className='d-block w-100'
-                  alt='img-2'
-                />
+                <img src={plague} className='d-block w-100' alt='img-2' />
               </Link>
             </div>
             <div className='carousel-item'>
               <Link to='/products/5cdaad9ed0f7db045cb5b86f'>
-                <img
-                  src='https://cdn.cdkeys.com/media/responsivebannerslider/banneronen_1557812205.jpg'
-                  className='d-block w-100'
-                  alt='img-3'
-                />
+                <img src={tropico} className='d-block w-100' alt='img-3' />
               </Link>
             </div>
           </div>
