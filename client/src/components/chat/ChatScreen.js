@@ -18,7 +18,7 @@ class ChatScreen extends Component {
 
   componentDidMount() {
     const chatManager = new ChatManager({
-      instanceLocator: 'v1:us1:1f8f2f41-6b31-4104-a400-4e26edca68c7',
+      instanceLocator: 'v1:us1:464a2e86-22e9-4b79-a7c1-67f315f2ce5e',
       userId: this.props.username,
       tokenProvider: new TokenProvider({
         url: '/api/users/chatAuth'
@@ -30,7 +30,7 @@ class ChatScreen extends Component {
       .then(currentUser => {
         this.setState({ currentUser });
         return currentUser.subscribeToRoomMultipart({
-          roomId: '19394872',
+          roomId: 'c7e9abbe-1026-4038-9bcf-8c28b55cc1f2',
           messageLimit: 100,
           hooks: {
             onMessage: message => {

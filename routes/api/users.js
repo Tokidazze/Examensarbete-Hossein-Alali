@@ -15,9 +15,9 @@ const User = require('../../models/User');
 
 // New insatnce of chatkit with keys
 const chatkit = new Chatkit.default({
-  instanceLocator: 'v1:us1:1f8f2f41-6b31-4104-a400-4e26edca68c7',
+  instanceLocator: 'v1:us1:464a2e86-22e9-4b79-a7c1-67f315f2ce5e',
   key:
-    'ba6e8930-b6f3-47e3-8cd5-148c4470e1c5:qDqmhFlhXajrqsyfUg2wJm7wbGcGinHk9AN3NR1AAQ0='
+    '6dac4cb2-0045-4b9c-a6e0-37ea66442b59:DMfHKuYnc5IpPbz2BnPGfOPNZtROS07Hmq0zsoIcD5s='
 });
 
 // POST | Register a new user
